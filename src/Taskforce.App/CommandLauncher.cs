@@ -1,0 +1,21 @@
+using Taskforce.Domain;
+using Taskforce.Domain.Commands;
+
+namespace Taskforce.App;
+
+public class CommandLauncher : ICommandLauncher
+{
+    private readonly IServiceProvider _provider;
+
+    public CommandLauncher(IServiceProvider provider)
+    {
+        _provider = provider;
+    }
+
+    public async Task Run<TCommand>(TCommand command) where TCommand : ICommand
+    {
+        var commandHandler = _provider.GetRequiredService<ICommandHandler<TCommand>>();
+
+        await commandHandler.HandleAsync(command);
+    }
+}

@@ -1,0 +1,18 @@
+services:
+  # web:
+  #   build:
+  #     tags:
+  #       - "taskforce:latest"
+  #     context: ../src
+      
+  #   ports:
+  #     - "5000:5000"
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"

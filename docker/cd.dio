@@ -1,0 +1,69 @@
+<mxfile host="65bd71144e">
+    <diagram id="t4eS42xm3vTK8hJXLH08" name="Page-1">
+        <mxGraphModel dx="1096" dy="682" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="9" value="" style="edgeStyle=none;html=1;" parent="1" source="3" target="8" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="LOCAL DEV" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry y="100" width="230" height="480" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="" style="edgeStyle=none;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="3" source="14" target="17">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.75;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="3" source="14" target="24">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="repo folder" style="whiteSpace=wrap;html=1;" vertex="1" parent="3">
+                    <mxGeometry x="30" y="50" width="160" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="" style="edgeStyle=none;html=1;" edge="1" parent="3" source="17" target="26">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="Dockerfile" style="whiteSpace=wrap;html=1;" vertex="1" parent="3">
+                    <mxGeometry x="20" y="100" width="90" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="CLI" style="whiteSpace=wrap;html=1;" vertex="1" parent="3">
+                    <mxGeometry x="130" y="100" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="Docker compose" style="whiteSpace=wrap;html=1;" vertex="1" parent="3">
+                    <mxGeometry x="20" y="160" width="110" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="" style="edgeStyle=none;html=1;" parent="1" source="8" target="10" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="QA" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="260" y="100" width="200" height="480" as="geometry">
+                        <mxRectangle x="260" y="100" width="60" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="33" value="" style="edgeStyle=none;html=1;" edge="1" parent="8" source="31" target="32">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="Git CI/CD" style="whiteSpace=wrap;html=1;" vertex="1" parent="8">
+                    <mxGeometry x="30" y="50" width="150" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="38" value="" style="edgeStyle=none;html=1;" edge="1" parent="8" source="32" target="37">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" value="config" style="whiteSpace=wrap;html=1;" vertex="1" parent="8">
+                    <mxGeometry x="30" y="100" width="150" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="37" value="Git hosting?" style="whiteSpace=wrap;html=1;" vertex="1" parent="8">
+                    <mxGeometry x="30" y="150" width="150" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="" style="edgeStyle=none;html=1;" parent="1" source="10" target="12" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="STAGE" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="460" y="100" width="200" height="480" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="PROD" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="690" y="100" width="200" height="480" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

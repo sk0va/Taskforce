@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskforce.Domain", "Taskforce.Domain\Taskforce.Domain.csproj", "{EEADBAEE-7E2A-4ACE-BC24-D1DD15FFDB61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskforce.Db", "Taskforce.Db\Taskforce.Db.csproj", "{25851BD5-9328-40EE-9664-D5E7D43DEE1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskforce.App", "Taskforce.App\Taskforce.App.csproj", "{06192038-2F77-46DD-9525-7350BBA00B1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskforce.Api", "Taskforce.Api\Taskforce.Api.csproj", "{D9558074-3A7B-4D4F-AF91-7C803DBE0FF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskforce.UnitTests", "Taskforce.UnitTests\Taskforce.UnitTests.csproj", "{BD470E8C-5E9A-4887-BE70-77EE13B3BE00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskforce.IntegrationTests", "Taskforce.IntegrationTests\Taskforce.IntegrationTests.csproj", "{024418D7-9CB7-4B50-8557-62ADBFB6DEBB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskforce.Db.Migrations", "Taskforce.Db.Migrations\Taskforce.Db.Migrations.csproj", "{BA1222C3-7A00-4B94-A78B-186C44CFE6E3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EEADBAEE-7E2A-4ACE-BC24-D1DD15FFDB61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEADBAEE-7E2A-4ACE-BC24-D1DD15FFDB61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEADBAEE-7E2A-4ACE-BC24-D1DD15FFDB61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEADBAEE-7E2A-4ACE-BC24-D1DD15FFDB61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25851BD5-9328-40EE-9664-D5E7D43DEE1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25851BD5-9328-40EE-9664-D5E7D43DEE1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25851BD5-9328-40EE-9664-D5E7D43DEE1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25851BD5-9328-40EE-9664-D5E7D43DEE1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06192038-2F77-46DD-9525-7350BBA00B1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06192038-2F77-46DD-9525-7350BBA00B1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06192038-2F77-46DD-9525-7350BBA00B1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06192038-2F77-46DD-9525-7350BBA00B1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9558074-3A7B-4D4F-AF91-7C803DBE0FF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9558074-3A7B-4D4F-AF91-7C803DBE0FF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9558074-3A7B-4D4F-AF91-7C803DBE0FF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9558074-3A7B-4D4F-AF91-7C803DBE0FF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD470E8C-5E9A-4887-BE70-77EE13B3BE00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD470E8C-5E9A-4887-BE70-77EE13B3BE00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD470E8C-5E9A-4887-BE70-77EE13B3BE00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD470E8C-5E9A-4887-BE70-77EE13B3BE00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{024418D7-9CB7-4B50-8557-62ADBFB6DEBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{024418D7-9CB7-4B50-8557-62ADBFB6DEBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{024418D7-9CB7-4B50-8557-62ADBFB6DEBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{024418D7-9CB7-4B50-8557-62ADBFB6DEBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA1222C3-7A00-4B94-A78B-186C44CFE6E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA1222C3-7A00-4B94-A78B-186C44CFE6E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA1222C3-7A00-4B94-A78B-186C44CFE6E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA1222C3-7A00-4B94-A78B-186C44CFE6E3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
