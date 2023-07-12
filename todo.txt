@@ -1,0 +1,4 @@
+TODO: 
+
+- provide CancellationTokens where it's needed
+- create a generic query in the domain layer (instead of using a repository directly from gql)
