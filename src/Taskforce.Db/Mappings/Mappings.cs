@@ -12,8 +12,7 @@ public class DbProfle: Profile
         CreateMap<Entities.Task, Domain.Entities.Task>();
         CreateMap<Domain.Entities.Task, Entities.Task>();
 
-        // CreateMap<Entities.Event, Domain.Entities.Event>();
-        // CreateMap<Entities.Ticket, Domain.Entities.Ticket>();
+        CreateMap<Entities.Event, Domain.Entities.Event>();
+        CreateMap<Entities.Ticket, Domain.Entities.Ticket>();
     }
-
 }
