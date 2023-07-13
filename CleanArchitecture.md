@@ -26,7 +26,6 @@ According to Uncle Bob (Robert C. Martin), Clean Architecture consists of the fo
 
 - Frameworks and Drivers (Infrastructure Layer): The Frameworks and Drivers layer consists of external tools, frameworks, and databases that the application interacts with. It includes technologies like web frameworks, databases, or communication protocols. This layer is responsible for dealing with the technical implementation details and infrastructure concerns.
 
-
 # Abstractions and mappings
 
 Becasue of Dependency Rule, Clean architecture insist on separation of abstractions between different layers. For example, if we have a domain entity `User` in the domain layer, we should not use it in the infrastructure layer. Instead, we should create a separate abstraction for the infrastructure layer, like `UserEntity` or `UserModel` and map it to the domain entity `User` in the application layer. Because each layer has it own purpose, each layer in most cases will have a bit specific requirements to abstractions it uses, so it is not a good idea to use the same abstractions in different layers. For example, in the domain layer, we may want to use `User` entity with all its properties, but in the web api layer, we may want to use `UseModel` with only a few properties, which are required for the web api. So, it is better to have separate abstractions for each layer, rather than using the same abstractions in different layers.
