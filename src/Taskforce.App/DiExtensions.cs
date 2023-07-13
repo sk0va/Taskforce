@@ -10,7 +10,7 @@ internal static class DiExtensions
     public static IServiceCollection AddSpecifications(this IServiceCollection services)
     {
         services.AddSpec<ITaskSpecification, TaskSpecification>();
-        
+
         return services;
     }
 

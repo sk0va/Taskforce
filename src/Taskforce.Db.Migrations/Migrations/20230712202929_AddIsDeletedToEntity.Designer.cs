@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Taskforce.Db;
@@ -11,9 +12,11 @@ using Taskforce.Db;
 namespace Taskforce.Db.Migrations
 {
     [DbContext(typeof(TaskforceDbContext))]
-    partial class TaskforceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230712202929_AddIsDeletedToEntity")]
+    partial class AddIsDeletedToEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
