@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Taskforce.Domain.Commands;
 
-namespace  Taskforce.App.Controllers;
+namespace Taskforce.App.Controllers;
 
 [Route("api/[controller]")]
 public class TasksController : ControllerBase

@@ -27,7 +27,7 @@ internal static class DependenciesRegistrator
 
     private static void AddSpecification<TSpecInterface, TSpecImpl>(this IServiceCollection services)
         where TSpecInterface : ISpecification<Entity>
-        where TSpecImpl: class, TSpecInterface
+        where TSpecImpl : class, TSpecInterface
     {
         services.AddTransient<TSpecImpl>();
         services.AddSingleton<SpecificationFactory<TSpecInterface>>(sp => () => (TSpecInterface)sp.GetRequiredService(typeof(TSpecImpl)));

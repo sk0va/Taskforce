@@ -2,7 +2,7 @@ using AutoMapper;
 
 namespace Taskforce.Db.Mappings;
 
-public class DbProfle: Profile
+public class DbProfle : Profile
 {
     public DbProfle()
     {

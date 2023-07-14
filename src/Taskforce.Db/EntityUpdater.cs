@@ -5,12 +5,12 @@ using Taskforce.Domain;
 
 namespace Taskforce.Db;
 
-internal record struct EntityUpdater<TDomain, TDb> (IMapper Mapper)
+internal record struct EntityUpdater<TDomain, TDb>(IMapper Mapper)
  : IEntityUpdater<TDomain>
     where TDomain : Domain.Entities.Entity
     where TDb : Entities.Entity
 {
-    private static readonly ParameterExpression _target =  Expression.Parameter(typeof(SetPropertyCalls<TDb>), "setter");
+    private static readonly ParameterExpression _target = Expression.Parameter(typeof(SetPropertyCalls<TDb>), "setter");
     private Expression _setCallsChain = _target;
 
     public IEntityUpdater<TDomain> Set<TValue>(Expression<Func<TDomain, TValue>> propertySetter, TValue value)
@@ -21,7 +21,7 @@ internal record struct EntityUpdater<TDomain, TDb> (IMapper Mapper)
             .GetMethod(
                 nameof(SetPropertyCalls<TDb>.SetProperty),
                 1,
-                new []
+                new[]
                 {
                     typeof(Func<,>).MakeGenericType(typeof(TDb), propertyTypeArg),
                     propertyTypeArg
@@ -32,14 +32,14 @@ internal record struct EntityUpdater<TDomain, TDb> (IMapper Mapper)
         _setCallsChain = Expression.Call(
             _setCallsChain,
             miSetProperty.MakeGenericMethod(typeof(TValue)),
-            new Expression[]{setExpression, Expression.Constant(value, typeof(TValue))});
+            new Expression[] { setExpression, Expression.Constant(value, typeof(TValue)) });
 
         return this;
     }
 
     public Expression<Func<SetPropertyCalls<TDb>, SetPropertyCalls<TDb>>> GenerateUpdateExpression()
     {
-        var lambda = Expression.Lambda<Func<SetPropertyCalls<TDb>, SetPropertyCalls<TDb>>>(_setCallsChain, false, new[]{_target});
+        var lambda = Expression.Lambda<Func<SetPropertyCalls<TDb>, SetPropertyCalls<TDb>>>(_setCallsChain, false, new[] { _target });
 
         return lambda;
     }

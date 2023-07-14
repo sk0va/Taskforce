@@ -1,11 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Taskforce.Db;
 using AutoMapper;
-using Taskforce.Domain.Commands;
 using AutoMapper.Extensions.ExpressionMapping;
-using Taskforce.Domain.Interfaces;
 using Taskforce.Api.Queries;
-using Taskforce.Domain.Queries;
 
 namespace Taskforce.App;
 
