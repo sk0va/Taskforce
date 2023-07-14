@@ -1,3 +1,5 @@
+using Taskforce.Domain.Interfaces.Specifications;
+
 namespace Taskforce.Domain.Interfaces;
 
 public interface IRepository<T> where T : Entities.Entity

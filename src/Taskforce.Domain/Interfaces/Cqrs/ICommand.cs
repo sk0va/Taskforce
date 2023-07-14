@@ -1,4 +1,4 @@
-namespace Taskforce.Domain;
+namespace Taskforce.Domain.Interfaces.Cqrs;
 
 public interface ICommand
 {

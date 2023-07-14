@@ -1,11 +1,11 @@
-using Taskforce.Domain;
 using Taskforce.Db.Entities;
+using Taskforce.Domain.Interfaces.Specifications;
 
-namespace Taskforce.Db.Specifications;
+namespace Taskforce.Db.Tasks;
 
 public class TaskSpecification : EntitySpecification, ITaskSpecification, IQueryTransformer<DbTask>
 {
-    private readonly SpecificationContainer<Domain.Entities.Task, DbTask> _taskSpecifications = new();
+    private readonly SpecificationContainer<Domain.Tasks.Task, DbTask> _taskSpecifications = new();
 
     public IQueryable<DbTask> Apply(IQueryable<DbTask> query)
     {

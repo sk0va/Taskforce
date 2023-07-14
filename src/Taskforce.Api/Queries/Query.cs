@@ -1,5 +1,5 @@
 using Humanizer;
-using Taskforce.Domain.Queries;
+using Taskforce.Domain.Interfaces.Cqrs;
 
 namespace Taskforce.Api.Queries;
 
@@ -9,7 +9,7 @@ public class QueryType : ObjectType
     {
         descriptor.Name("Query");
 
-        Configure<Domain.Entities.Task, TaskSpecificationInput>(descriptor);
+        Configure<Domain.Tasks.Task, TaskSpecificationInput>(descriptor);
     }
 
     private static void Configure<TDomain, TSpecification>(IObjectTypeDescriptor descriptor)

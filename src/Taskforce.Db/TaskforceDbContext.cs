@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using Taskforce.Db.Entities;
+using Taskforce.Db.Events;
+using Taskforce.Db.Tasks;
+using Taskforce.Db.Tickets;
 
 namespace Taskforce.Db;
 

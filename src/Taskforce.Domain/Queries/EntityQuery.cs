@@ -1,5 +1,7 @@
 using Taskforce.Domain.Entities;
 using Taskforce.Domain.Interfaces;
+using Taskforce.Domain.Interfaces.Cqrs;
+using Taskforce.Domain.Interfaces.Specifications;
 
 namespace Taskforce.Domain.Queries;
 

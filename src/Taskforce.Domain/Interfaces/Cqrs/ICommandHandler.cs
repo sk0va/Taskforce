@@ -1,5 +1,4 @@
-
-namespace Taskforce.Domain.Commands;
+namespace Taskforce.Domain.Interfaces.Cqrs;
 
 public interface ICommandHandler<T> where T : ICommand
 {

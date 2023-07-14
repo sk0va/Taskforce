@@ -1,8 +1,8 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using Taskforce.Domain;
 using Taskforce.Domain.Interfaces;
 using Taskforce.Db.Entities;
+using Taskforce.Domain.Interfaces.Specifications;
 
 namespace Taskforce.Db;
 

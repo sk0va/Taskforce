@@ -1,6 +1,6 @@
-using Taskforce.Db.Specifications;
-using Taskforce.Domain;
+using Taskforce.Db.Entities;
 using Taskforce.Domain.Entities;
+using Taskforce.Domain.Interfaces.Specifications;
 
 namespace Taskforce.Api.Queries;
 

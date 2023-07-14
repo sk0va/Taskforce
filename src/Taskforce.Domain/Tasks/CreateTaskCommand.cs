@@ -1,6 +1,8 @@
-namespace Taskforce.Domain.Commands;
+using Taskforce.Domain.Interfaces.Cqrs;
 
-public class UpdateTaskCommand : ICommand
+namespace Taskforce.Domain.Tasks;
+
+public class CreateTaskCommand : ICommand
 {
     public Guid CommandId { get; set; }
 

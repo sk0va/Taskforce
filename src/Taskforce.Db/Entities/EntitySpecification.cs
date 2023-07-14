@@ -1,7 +1,6 @@
-using Taskforce.Db.Entities;
-using Taskforce.Domain;
+using Taskforce.Domain.Interfaces.Specifications;
 
-namespace Taskforce.Db.Specifications;
+namespace Taskforce.Db.Entities;
 
 public class EntitySpecification : IEntitySpecification, IQueryTransformer<DbEntity>
 {

@@ -1,16 +1,18 @@
 using Taskforce.Domain.Interfaces;
+using Taskforce.Domain.Interfaces.Cqrs;
+using Taskforce.Domain.Interfaces.Specifications;
 
-namespace Taskforce.Domain.Commands;
+namespace Taskforce.Domain.Tasks;
 
 internal class UpdateTaskCommandHandler : ICommandHandler<UpdateTaskCommand>
 {
-    private readonly IRepository<Entities.Task> _taskRepository;
+    private readonly IRepository<Task> _taskRepository;
     private readonly SpecificationFactory<ITaskSpecification> _specificationsFactory;
     private readonly IUnitOfWork _unitOfWork;
 
     public UpdateTaskCommandHandler(
         IUnitOfWork unitOfWork,
-        IRepository<Entities.Task> taskRepository,
+        IRepository<Task> taskRepository,
         SpecificationFactory<ITaskSpecification> specificationsFactory)
     {
         _taskRepository = taskRepository;
@@ -18,7 +20,7 @@ internal class UpdateTaskCommandHandler : ICommandHandler<UpdateTaskCommand>
         _unitOfWork = unitOfWork;
     }
 
-    public async Task HandleAsync(UpdateTaskCommand command)
+    public async System.Threading.Tasks.Task HandleAsync(UpdateTaskCommand command)
     {
         var task = await _taskRepository.GetByIdAsync(command.TaskId)
             ?? throw new KeyNotFoundException($"Task with id {command.TaskId} not found");

@@ -1,4 +1,4 @@
-namespace Taskforce.Domain;
+namespace Taskforce.Domain.Interfaces.Specifications;
 
 
 public interface IEntitySpecification : ISpecification<Entities.Entity>
@@ -15,7 +15,7 @@ public interface IEntitySpecification : ISpecification<Entities.Entity>
     void DeletedDateIs(DateTime? exactValue = null);
 }
 
-public interface ITaskSpecification : IEntitySpecification, ISpecification<Entities.Task>
+public interface ITaskSpecification : IEntitySpecification, ISpecification<Tasks.Task>
 {
     public void TitleContains(string title);
 

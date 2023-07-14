@@ -1,4 +1,4 @@
-namespace Taskforce.Domain.Commands;
+namespace Taskforce.Domain.Interfaces.Cqrs;
 
 public interface ICommandLauncher
 {

@@ -1,8 +1,8 @@
 using System.Linq.Expressions;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore.Query;
-using Taskforce.Domain;
 using Taskforce.Db.Entities;
+using Taskforce.Domain.Interfaces;
 
 namespace Taskforce.Db;
 

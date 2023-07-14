@@ -1,24 +1,24 @@
-
 using Taskforce.Domain.Interfaces;
+using Taskforce.Domain.Interfaces.Cqrs;
 
-namespace Taskforce.Domain.Commands;
+namespace Taskforce.Domain.Tasks;
 
 internal class CreateTaskCommandHandler : ICommandHandler<CreateTaskCommand>
 {
-    private readonly IRepository<Entities.Task> _taskRepository;
+    private readonly IRepository<Task> _taskRepository;
     private readonly IUnitOfWork _unitOfWork;
 
     public CreateTaskCommandHandler(
         IUnitOfWork unitOfWork,
-        IRepository<Entities.Task> taskRepository)
+        IRepository<Task> taskRepository)
     {
         _taskRepository = taskRepository;
         _unitOfWork = unitOfWork;
     }
 
-    public async Task HandleAsync(CreateTaskCommand command)
+    public async System.Threading.Tasks.Task HandleAsync(CreateTaskCommand command)
     {
-        var task = new Entities.Task
+        var task = new Domain.Tasks.Task
         {
             Id = command.TaskId,
             Title = command.Title,

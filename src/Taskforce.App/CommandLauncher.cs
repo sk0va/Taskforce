@@ -1,5 +1,4 @@
-using Taskforce.Domain;
-using Taskforce.Domain.Commands;
+using Taskforce.Domain.Interfaces.Cqrs;
 
 namespace Taskforce.App;
 

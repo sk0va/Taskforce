@@ -1,8 +1,13 @@
 using AutoMapper;
 using Taskforce.Domain.Entities;
 using Taskforce.Db.Entities;
+using Taskforce.Domain.Events;
+using Taskforce.Db.Tasks;
+using Taskforce.Db.Tickets;
+using Taskforce.Db.Events;
+using Taskforce.Domain.Tickets;
 
-namespace Taskforce.Db.Mappings;
+namespace Taskforce.Db;
 
 public class DbProfle : Profile
 {
@@ -11,7 +16,7 @@ public class DbProfle : Profile
         CreateMap<DbEntity, Entity>().ReverseMap();
 
         CreateMap<DbTicket, Ticket>().ReverseMap();
-        CreateMap<DbTask, Domain.Entities.Task>().ReverseMap();
+        CreateMap<DbTask, Domain.Tasks.Task>().ReverseMap();
         CreateMap<DbEvent, Event>().ReverseMap();
     }
 }

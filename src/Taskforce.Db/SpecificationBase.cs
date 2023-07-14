@@ -1,7 +1,7 @@
-using Taskforce.Domain;
 using Taskforce.Db.Entities;
+using Taskforce.Domain.Interfaces.Specifications;
 
-namespace Taskforce.Db.Specifications;
+namespace Taskforce.Db;
 
 public class SpecificationContainer<TDomain, TDb> : ISpecification<TDomain>, IQueryTransformer<TDb>
     where TDomain : Domain.Entities.Entity

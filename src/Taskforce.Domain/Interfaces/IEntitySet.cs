@@ -1,4 +1,4 @@
-namespace Taskforce.Domain;
+namespace Taskforce.Domain.Interfaces;
 
 public interface IEntitySet<T> where T : Entities.Entity
 {

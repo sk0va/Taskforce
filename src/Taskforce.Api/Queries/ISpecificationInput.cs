@@ -1,4 +1,4 @@
-using Taskforce.Domain;
+using Taskforce.Domain.Interfaces.Specifications;
 
 namespace Taskforce.Api.Queries;
 

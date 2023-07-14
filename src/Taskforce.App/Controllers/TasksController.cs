@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Taskforce.Domain.Commands;
+using Taskforce.Domain.Interfaces.Cqrs;
+using Taskforce.Domain.Tasks;
 
 namespace Taskforce.App.Controllers;
 

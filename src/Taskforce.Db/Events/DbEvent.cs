@@ -1,6 +1,8 @@
-namespace Taskforce.Domain.Entities;
+using Taskforce.Db.Entities;
 
-public class Event : Entity
+namespace Taskforce.Db.Events;
+
+public class DbEvent : DbEntity
 {
     public bool IsTemplate { get; set; }
 

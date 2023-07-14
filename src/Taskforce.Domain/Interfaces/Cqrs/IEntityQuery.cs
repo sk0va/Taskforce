@@ -1,6 +1,7 @@
 using Taskforce.Domain.Entities;
+using Taskforce.Domain.Interfaces.Specifications;
 
-namespace Taskforce.Domain.Queries;
+namespace Taskforce.Domain.Interfaces.Cqrs;
 
 public interface IEntityQuery<TEntity> where TEntity : Entity
 {

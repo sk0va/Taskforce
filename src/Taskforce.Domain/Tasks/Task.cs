@@ -1,8 +1,10 @@
+using Taskforce.Domain.Tickets;
 
-namespace Taskforce.Db.Entities;
+namespace Taskforce.Domain.Tasks;
 
-public class DbTask : DbTicket
+public class Task : Ticket
 {
     public DateTime? DueDate { get; set; }
+
     public DateTime? CompletedDate { get; set; }
 }
