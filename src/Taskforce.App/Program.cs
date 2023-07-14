@@ -5,6 +5,7 @@ using Taskforce.Domain.Commands;
 using AutoMapper.Extensions.ExpressionMapping;
 using Taskforce.Domain.Interfaces;
 using Taskforce.Api.Queries;
+using Taskforce.Domain.Queries;
 
 namespace Taskforce.App;
 
@@ -77,12 +78,15 @@ internal static class Program
                 schemaBuilder.AddQueryType<QueryType>();
             });
 
+        services.AddScoped<IRepository<Domain.Entities.Task>, GenericRepository<Domain.Entities.Task, Db.Entities.Task>>();
+
         services.AddTransient<ICommandLauncher, CommandLauncher>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<ICommandHandler<CreateTaskCommand>, CreateTaskCommandHandler>();
         services.AddScoped<ICommandHandler<UpdateTaskCommand>, UpdateTaskCommandHandler>();
 
+        services.AddScoped(typeof(IEntityQuery<>), typeof(EntityQuery<>));
+
         services.AddSpecifications();
-        services.AddScoped(typeof(IRepository<Domain.Entities.Task>), typeof(GenericRepository<Domain.Entities.Task, Db.Entities.Task>));
     }
 }
