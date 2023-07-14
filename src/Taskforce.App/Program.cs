@@ -15,7 +15,30 @@ internal static class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        ConfigureServices(builder);
+        var services = builder.Services;
+
+        services.AddControllers();
+        services.AddEndpointsApiExplorer();
+        services.AddSwaggerGen();
+
+        services.AddAutoMapper(
+            c => c.AddExpressionMapping(),
+            typeof(TaskforceDbContext).Assembly);
+
+        services.AddDbContext<TaskforceDbContext>(b =>
+            b.UseNpgsql(
+                builder.Configuration.GetConnectionString("TaskforceDb"),
+                b => b.MigrationsAssembly(typeof(Db.Migrations.InitMigration).Assembly.FullName)));
+
+        services
+            .AddGraphQLServer()
+            .ConfigureSchema(schemaBuilder =>
+            {
+                schemaBuilder.ModifyOptions(opt => opt.StrictValidation = false);
+                schemaBuilder.AddQueryType<QueryType>();
+            });
+
+        DependenciesRegistrator.RegisterServices(services);
 
         var app = builder.Build();
 
@@ -51,42 +74,5 @@ internal static class Program
         var db = scope.ServiceProvider.GetRequiredService<TaskforceDbContext>().Database;
         var isRelational = db.IsRelational();
         db.Migrate();
-    }
-
-    private static void ConfigureServices(WebApplicationBuilder builder)
-    {
-        var services = builder.Services;
-
-        services.AddControllers();
-        services.AddEndpointsApiExplorer();
-        services.AddSwaggerGen();
-
-        services.AddAutoMapper(
-            c => c.AddExpressionMapping(),
-            typeof(TaskforceDbContext).Assembly);
-
-        services.AddDbContext<TaskforceDbContext>(b =>
-            b.UseNpgsql(
-                builder.Configuration.GetConnectionString("TaskforceDb"),
-                b => b.MigrationsAssembly(typeof(Db.Migrations.InitMigration).Assembly.FullName)));
-
-        services
-            .AddGraphQLServer()
-            .ConfigureSchema(schemaBuilder =>
-            {
-                schemaBuilder.ModifyOptions(opt => opt.StrictValidation = false);
-                schemaBuilder.AddQueryType<QueryType>();
-            });
-
-        services.AddScoped<IRepository<Domain.Entities.Task>, GenericRepository<Domain.Entities.Task, Db.Entities.Task>>();
-
-        services.AddTransient<ICommandLauncher, CommandLauncher>();
-        services.AddScoped<IUnitOfWork, UnitOfWork>();
-        services.AddScoped<ICommandHandler<CreateTaskCommand>, CreateTaskCommandHandler>();
-        services.AddScoped<ICommandHandler<UpdateTaskCommand>, UpdateTaskCommandHandler>();
-
-        services.AddScoped(typeof(IEntityQuery<>), typeof(EntityQuery<>));
-
-        services.AddSpecifications();
     }
 }

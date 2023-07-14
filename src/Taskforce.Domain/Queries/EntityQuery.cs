@@ -3,7 +3,7 @@ using Taskforce.Domain.Interfaces;
 
 namespace Taskforce.Domain.Queries;
 
-public class EntityQuery<TEntity> : IEntityQuery<TEntity> where TEntity : Entity
+internal class EntityQuery<TEntity> : IEntityQuery<TEntity> where TEntity : Entity
 {
     private readonly IRepository<TEntity> _repository;
 
