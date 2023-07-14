@@ -1,10 +1,12 @@
-using Taskforce.Db;
-using Taskforce.Db.Specifications;
 using Taskforce.Domain;
 using Taskforce.Domain.Commands;
 using Taskforce.Domain.Entities;
 using Taskforce.Domain.Interfaces;
 using Taskforce.Domain.Queries;
+
+using Taskforce.Db;
+using Taskforce.Db.Specifications;
+using Taskforce.Db.Entities;
 
 namespace Taskforce.App;
 
@@ -12,7 +14,7 @@ internal static class DependenciesRegistrator
 {
     public static void RegisterServices(IServiceCollection services)
     {
-        services.AddScoped<IRepository<Domain.Entities.Task>, GenericRepository<Domain.Entities.Task, Db.Entities.Task>>();
+        services.AddScoped<IRepository<Domain.Entities.Task>, GenericRepository<Domain.Entities.Task, DbTask>>();
 
         services.AddTransient<ICommandLauncher, CommandLauncher>();
 

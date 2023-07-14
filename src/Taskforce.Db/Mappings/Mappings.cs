@@ -1,4 +1,6 @@
 using AutoMapper;
+using Taskforce.Domain.Entities;
+using Taskforce.Db.Entities;
 
 namespace Taskforce.Db.Mappings;
 
@@ -6,13 +8,10 @@ public class DbProfle : Profile
 {
     public DbProfle()
     {
-        CreateMap<Entities.Entity, Domain.Entities.Entity>();
-        CreateMap<Domain.Entities.Entity, Entities.Entity>();
+        CreateMap<DbEntity, Entity>().ReverseMap();
 
-        CreateMap<Entities.Task, Domain.Entities.Task>();
-        CreateMap<Domain.Entities.Task, Entities.Task>();
-
-        CreateMap<Entities.Event, Domain.Entities.Event>();
-        CreateMap<Entities.Ticket, Domain.Entities.Ticket>();
+        CreateMap<DbTicket, Ticket>().ReverseMap();
+        CreateMap<DbTask, Domain.Entities.Task>().ReverseMap();
+        CreateMap<DbEvent, Event>().ReverseMap();
     }
 }

@@ -1,7 +1,7 @@
 
 namespace Taskforce.Db.Entities;
 
-public class Task : Ticket
+public class DbTask : DbTicket
 {
     public DateTime? DueDate { get; set; }
     public DateTime? CompletedDate { get; set; }

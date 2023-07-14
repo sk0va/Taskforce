@@ -10,10 +10,10 @@ public class TaskforceDbContext : DbContext
     {
     }
 
-    public DbSet<Ticket> Tickets { get; set; }
+    public DbSet<DbTicket> Tickets { get; set; }
 
-    public DbSet<Entities.Task> Tasks { get; set; }
+    public DbSet<DbTask> Tasks { get; set; }
 
-    public DbSet<Event> Events { get; set; }
+    public DbSet<DbEvent> Events { get; set; }
     // public DbSet<Stream> Streams { get; set; }
 }

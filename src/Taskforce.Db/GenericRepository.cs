@@ -2,12 +2,13 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Taskforce.Domain;
 using Taskforce.Domain.Interfaces;
+using Taskforce.Db.Entities;
 
 namespace Taskforce.Db;
 
 public class GenericRepository<TDomain, TDb> : IRepository<TDomain>
     where TDomain : Domain.Entities.Entity
-    where TDb : Entities.Entity
+    where TDb : DbEntity
 {
     private readonly TaskforceDbContext _dbContext;
 
@@ -28,7 +29,6 @@ public class GenericRepository<TDomain, TDb> : IRepository<TDomain>
         var dbEntity = await _dbContext.FindAsync<TDb>(id);
         return _mapper.Map<TDb, TDomain>(dbEntity);
     }
-
 
     public async Task AddAsync(TDomain entity)
     {

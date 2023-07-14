@@ -1,7 +1,7 @@
 
 namespace Taskforce.Db.Entities;
 
-public class Entity
+public class DbEntity
 {
     public Guid Id { get; set; }
 

@@ -1,10 +1,11 @@
 using Taskforce.Domain;
+using Taskforce.Db.Entities;
 
 namespace Taskforce.Db.Specifications;
 
 public class SpecificationContainer<TDomain, TDb> : ISpecification<TDomain>, IQueryTransformer<TDb>
     where TDomain : Domain.Entities.Entity
-    where TDb : Db.Entities.Entity
+    where TDb : DbEntity
 {
     private readonly List<Func<IQueryable<TDb>, IQueryable<TDb>>> _transformations = new();
 

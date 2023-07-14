@@ -1,7 +1,7 @@
 
 namespace Taskforce.Db.Entities;
 
-public class Ticket : Entity
+public class DbTicket : DbEntity
 {
     public bool IsTemplate { get; set; }
 

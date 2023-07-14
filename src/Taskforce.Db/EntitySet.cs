@@ -2,6 +2,7 @@ using AutoMapper;
 using Taskforce.Db.Specifications;
 using Taskforce.Domain;
 using Microsoft.EntityFrameworkCore;
+using Taskforce.Db.Entities;
 
 namespace Taskforce.Db;
 
@@ -12,7 +13,7 @@ internal record struct EntitySet<TDomain, TDb>(
 
  : IEntitySet<TDomain>
     where TDomain : Domain.Entities.Entity
-    where TDb : Entities.Entity
+    where TDb : DbEntity
 {
     private readonly IQueryTransformer<TDb> DbQueryTransformer => (IQueryTransformer<TDb>)Specification;
 

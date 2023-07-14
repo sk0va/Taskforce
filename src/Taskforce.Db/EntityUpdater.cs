@@ -2,13 +2,14 @@ using System.Linq.Expressions;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore.Query;
 using Taskforce.Domain;
+using Taskforce.Db.Entities;
 
 namespace Taskforce.Db;
 
 internal record struct EntityUpdater<TDomain, TDb>(IMapper Mapper)
  : IEntityUpdater<TDomain>
     where TDomain : Domain.Entities.Entity
-    where TDb : Entities.Entity
+    where TDb : DbEntity
 {
     private static readonly ParameterExpression _target = Expression.Parameter(typeof(SetPropertyCalls<TDb>), "setter");
     private Expression _setCallsChain = _target;
