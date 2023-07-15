@@ -14,8 +14,8 @@ internal class EntityQuery<TEntity> : IEntityQuery<TEntity> where TEntity : Enti
         _repository = repository;
     }
 
-    public async Task<IEnumerable<TEntity>> GetListAsync(ISpecification<TEntity> specification)
+    public async Task<IEnumerable<TEntity>> GetListAsync(ISpecification<TEntity> specification, CancellationToken ct)
     {
-        return await _repository.With(specification).ToListAsync();
+        return await _repository.With(specification).ToListAsync(ct);
     }
 }

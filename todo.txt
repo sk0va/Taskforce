@@ -1,6 +1,6 @@
 TODO: 
 
-- provide CancellationTokens where it's needed
-- create a generic query in the domain layer (instead of using a repository directly from gql)
++ provide CancellationTokens where it's needed
++ create a generic query in the domain layer (instead of using a repository directly from gql)
 
-- use business-oriented structures instead of tech-oriented
++ use business-oriented structures instead of tech-oriented

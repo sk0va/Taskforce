@@ -16,9 +16,9 @@ internal class CreateTaskCommandHandler : ICommandHandler<CreateTaskCommand>
         _unitOfWork = unitOfWork;
     }
 
-    public async System.Threading.Tasks.Task HandleAsync(CreateTaskCommand command)
+    public async System.Threading.Tasks.Task HandleAsync(CreateTaskCommand command, CancellationToken ct)
     {
-        var task = new Domain.Tasks.Task
+        var task = new Task
         {
             Id = command.TaskId,
             Title = command.Title,
@@ -27,8 +27,8 @@ internal class CreateTaskCommandHandler : ICommandHandler<CreateTaskCommand>
             State = "New"
         };
 
-        await _taskRepository.AddAsync(task);
+        await _taskRepository.AddAsync(task, ct);
 
-        await _unitOfWork.SaveChangesAsync();
+        await _unitOfWork.SaveChangesAsync(ct);
     }
 }

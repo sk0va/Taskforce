@@ -7,6 +7,7 @@ COPY **/*.csproj ./
 
 COPY Taskforce.Domain/Taskforce.Domain.csproj ./Taskforce.Domain/Taskforce.Domain.csproj
 COPY Taskforce.Db/Taskforce.Db.csproj ./Taskforce.Db/Taskforce.Db.csproj
+COPY Taskforce.Db.Migrations/Taskforce.Db.Migrations.csproj ./Taskforce.Db.Migrations/Taskforce.Db.Migrations.csproj
 COPY Taskforce.App/Taskforce.App.csproj ./Taskforce.App/Taskforce.App.csproj
 COPY Taskforce.Api/Taskforce.Api.csproj ./Taskforce.Api/Taskforce.Api.csproj
 COPY Taskforce.UnitTests/Taskforce.UnitTests.csproj ./Taskforce.UnitTests/Taskforce.UnitTests.csproj
@@ -14,6 +15,7 @@ COPY Taskforce.IntegrationTests/Taskforce.IntegrationTests.csproj ./Taskforce.In
 
 RUN dotnet restore Taskforce.Domain/Taskforce.Domain.csproj
 RUN dotnet restore Taskforce.Db/Taskforce.Db.csproj
+RUN dotnet restore Taskforce.Db.Migrations/Taskforce.Db.Migrations.csproj
 RUN dotnet restore Taskforce.App/Taskforce.App.csproj
 RUN dotnet restore Taskforce.Api/Taskforce.Api.csproj
 RUN dotnet restore Taskforce.UnitTests/Taskforce.UnitTests.csproj

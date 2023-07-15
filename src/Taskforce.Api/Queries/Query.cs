@@ -24,7 +24,7 @@ public class QueryType : ObjectType
                 var specification = ctx.ArgumentValue<TSpecification>("specification") ?? new TSpecification();
                 var query = ctx.Service<IEntityQuery<TDomain>>();
 
-                var res = await query.GetListAsync(specification.ToSpecification());
+                var res = await query.GetListAsync(specification.ToSpecification(), ct);
                 return res;
             });
     }

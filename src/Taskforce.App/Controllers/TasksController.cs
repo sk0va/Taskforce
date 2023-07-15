@@ -16,18 +16,18 @@ public class TasksController : ControllerBase
 
     [HttpPost]
     public async Task<IActionResult> CreateTaskAsync(
-        [FromBody] CreateTaskCommand command)
+        [FromBody] CreateTaskCommand command, CancellationToken ct)
     {
-        await _commandLauncher.Run(command);
+        await _commandLauncher.Run(command, ct);
 
         return Ok();
     }
 
     [HttpPut]
     public async Task<IActionResult> UpdateTaskAsync(
-        [FromBody] UpdateTaskCommand command)
+        [FromBody] UpdateTaskCommand command, CancellationToken ct)
     {
-        await _commandLauncher.Run(command);
+        await _commandLauncher.Run(command, ct);
 
         return Ok();
     }

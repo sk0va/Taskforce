@@ -11,10 +11,10 @@ public class CommandLauncher : ICommandLauncher
         _provider = provider;
     }
 
-    public async Task Run<TCommand>(TCommand command) where TCommand : ICommand
+    public async Task Run<TCommand>(TCommand command, CancellationToken ct) where TCommand : ICommand
     {
         var commandHandler = _provider.GetRequiredService<ICommandHandler<TCommand>>();
 
-        await commandHandler.HandleAsync(command);
+        await commandHandler.HandleAsync(command, ct);
     }
 }
