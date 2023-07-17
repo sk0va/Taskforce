@@ -5,8 +5,4 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Ardalis.Specification" Version="7.0.0" />
-  </ItemGroup>
-
 </Project>

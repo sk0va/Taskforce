@@ -1,0 +1,66 @@
+@page "/tasksList"
+@using Taskforce.Db.Tasks
+
+@inject Taskforce.Domain.Interfaces.Cqrs.IEntityQuery<Taskforce.Domain.Tasks.Task> query
+
+<PageTitle>Tasks</PageTitle>
+
+@if(tasks == null)
+{
+    <p><em>Loading...</em></p>
+}else{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+
+                <th>Id</th>
+                <th>DueDate</th>
+                <th>CompletedDate</th>
+                <th>IsTemplate</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>State</th>
+                <th>IsDeleted</th>
+                <th>CreatedDate</th>
+                <th>UpdatedDate</th>
+                <th>DeletedDate</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var t in tasks)
+            {
+                <tr>
+                    <td>@t.Id</td>
+                    <td>@t.DueDate</td>
+                    <td>@t.CompletedDate</td>
+                    <td>@t.IsTemplate</td>
+                    <td>@t.Title</td>
+                    <td>@t.Description</td>
+                    <td>@t.State</td>
+                    <td>@t.IsDeleted</td>
+                    <td>@t.CreatedDate</td>
+                    <td>@t.UpdatedDate</td>
+                    <td>@t.DeletedDate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private Taskforce.Domain.Tasks.Task[] tasks;
+
+    protected override async System.Threading.Tasks.Task OnInitializedAsync()
+    {
+        tasks = (await query.GetListAsync(new TaskSpecification(), default)).ToArray();
+    }
+}
+
+
+@* 
+#pragma warning restore 1998
+#nullable restore
+#line 8 "/home/serg/projects/Taskforce/src/Taskforce.WebUI/Pages/TasksList.razor" *@
+

@@ -3,6 +3,8 @@ using Taskforce.Db;
 using AutoMapper;
 using AutoMapper.Extensions.ExpressionMapping;
 using Taskforce.Api.Queries;
+using Taskforce.App.Controllers;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
 
 namespace Taskforce.App;
 
@@ -11,10 +13,50 @@ internal static class Program
     private static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+        ConfigureServices(builder);
 
+        var app = builder.Build();
+
+        // Configure the HTTP request pipeline.            
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+
+            // app.UseExceptionHandler("/Error");
+            // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+            app.UseHsts();
+        }
+
+        app.UseHttpsRedirection();
+
+        app.UseAuthorization();
+
+        app.MapGraphQL();
+        app.MapControllers();
+
+        // blazor section
+
+        app.UseStaticFiles();
+        app.UseRouting();
+
+        app.MapBlazorHub();
+        app.MapFallbackToPage("/_Host");
+
+        PrepareApp(app);
+
+        app.Run();
+    }
+
+    private static void ConfigureServices(WebApplicationBuilder builder)
+    {
         var services = builder.Services;
 
-        services.AddControllers();
+        services.AddControllers()
+            .PartManager
+            .ApplicationParts
+            .Add(new AssemblyPart(typeof(TasksController).Assembly));
+
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
 
@@ -35,27 +77,12 @@ internal static class Program
                 schemaBuilder.AddQueryType<QueryType>();
             });
 
+
+        // Add services to the container.
+        services.AddRazorPages();
+        services.AddServerSideBlazor();
+
         DependenciesRegistrator.RegisterServices(services);
-
-        var app = builder.Build();
-
-        // Configure the HTTP request pipeline.            
-        if (app.Environment.IsDevelopment())
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI();
-        }
-
-        app.UseHttpsRedirection();
-
-        app.UseAuthorization();
-
-        app.MapGraphQL();
-        app.MapControllers();
-
-        PrepareApp(app);
-
-        app.Run();
     }
 
     private static void PrepareApp(WebApplication app)

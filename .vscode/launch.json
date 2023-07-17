@@ -14,8 +14,7 @@
             "args": [],
             "cwd": "${workspaceFolder}/src/Taskforce.App",
             
-            "justMyCode": true,
-            
+            "justMyCode": true,            
 
             "stopAtEntry": false,
             "requireExactSource": false,
@@ -39,7 +38,7 @@
                 "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
             },
             "env": {
-                "ASPNETCORE_ENVIRONMENT": "Development"
+                "ASPNETCORE_ENVIRONMENT": "Development",
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
