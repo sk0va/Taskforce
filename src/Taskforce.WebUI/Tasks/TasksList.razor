@@ -1,7 +1,7 @@
-@page "/tasksList"
+@page "/tasks"
 @using Taskforce.Db.Tasks
 
-@inject Taskforce.Domain.Interfaces.Cqrs.IEntityQuery<Taskforce.Domain.Tasks.Task> query
+@inject IEntityQuery<Taskforce.Domain.Tasks.Task> query
 
 <PageTitle>Tasks</PageTitle>
 
@@ -12,8 +12,6 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Date</th>
-
                 <th>Id</th>
                 <th>DueDate</th>
                 <th>CompletedDate</th>
@@ -31,8 +29,11 @@
         <tbody>
             @foreach (var t in tasks)
             {
+                var href = $"tasks/{t.Id}";
                 <tr>
-                    <td>@t.Id</td>
+                    <NavLink class="nav-link" href="@href">
+                        <td>@t.Id</td>
+                    </NavLink>
                     <td>@t.DueDate</td>
                     <td>@t.CompletedDate</td>
                     <td>@t.IsTemplate</td>
@@ -57,7 +58,6 @@
         tasks = (await query.GetListAsync(new TaskSpecification(), default)).ToArray();
     }
 }
-
 
 @* 
 #pragma warning restore 1998

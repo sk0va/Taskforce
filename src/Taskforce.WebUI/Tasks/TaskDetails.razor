@@ -1,0 +1,63 @@
+@page "/tasks/{TaskId:guid}"
+@using Taskforce.Domain
+@using Taskforce.Db.Tasks
+
+@inject IEntityQuery<Domain.Tasks.Task> query
+
+@if (_task == null)
+{
+    <p><em>...Loading</em></p>
+} else {
+    
+    <form>
+        @foreach(var r in _props)
+        {   
+            <div class="row mb-3">
+                <label for="@(r.Name)" class="col-sm-2 col-form-label">@(r.Name)</label>
+                <div class="col-sm-10">
+                <input 
+                    type="text"
+                    class="form-control" 
+                    id="@(r.Name)" 
+                    name="@(r.Name)" 
+                    value="@(r.Value)" 
+                    readonly>
+                </div>
+            </div>
+        }
+    </form>
+}
+
+@code {
+    [Parameter]
+    public Guid TaskId { get; set; }    
+
+    private Domain.Tasks.Task _task = null;
+
+    private List<(string Name, string Value)> _props = null; //new Dictionary<string, string>();
+
+    protected override async System.Threading.Tasks.Task OnInitializedAsync()
+    {
+        var spec = new TaskSpecification();
+        spec.ById(TaskId);
+
+        _task = (await query.GetListAsync(spec, default)).FirstOrDefault();
+
+        string s(object o) { return o == null ? "" : o.ToString(); };
+        
+        _props = new List<(string, string)>()
+        {
+            (nameof(_task.Id), s(_task.Id)),
+            (nameof(_task.DueDate), s(_task.DueDate)),
+            (nameof(_task.CompletedDate), s(_task.CompletedDate)),
+            (nameof(_task.IsTemplate), _task.IsTemplate.ToString()),
+            (nameof(_task.Title), _task.Title.ToString()),
+            (nameof(_task.Description), _task.Description.ToString()),
+            (nameof(_task.State), _task.State.ToString()),
+            (nameof(_task.IsDeleted), _task.IsDeleted.ToString()),
+            (nameof(_task.CreatedDate), _task.CreatedDate.ToString()),
+            (nameof(_task.UpdatedDate), s(_task.UpdatedDate)),
+            (nameof(_task.DeletedDate), s(_task.DeletedDate))
+        };
+    }
+}

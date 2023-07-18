@@ -29,6 +29,6 @@ public class TasksController : ControllerBase
     {
         await _commandLauncher.Run(command, ct);
 
-        return Ok();
+        return NoContent();
     }
 }

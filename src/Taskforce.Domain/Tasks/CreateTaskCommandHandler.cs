@@ -24,11 +24,12 @@ internal class CreateTaskCommandHandler : ICommandHandler<CreateTaskCommand>
             Title = command.Title,
             Description = command.Description,
             DueDate = command.DueDate,
-            State = "New"
+            State = "New",
+            
+            CreatedDate = DateTime.UtcNow
         };
 
         await _taskRepository.AddAsync(task, ct);
-
         await _unitOfWork.SaveChangesAsync(ct);
     }
 }

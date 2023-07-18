@@ -3,7 +3,7 @@
         <a class="navbar-brand" href="">Task Force </a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
-        </button>
+        </button>        
     </div>
 </div>
 
@@ -13,10 +13,15 @@
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Home
             </NavLink>
-        </div>        
+        </div>
         <div class="nav-item px-3">            
-            <NavLink class="nav-link" href="tasksList">
-                <i class="oi bi bi-list-check"></i> Tasks
+            <NavLink class="nav-link" href="tasks">
+                <span class="oi bi bi-list-check"></span> Tasks
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">            
+            <NavLink class="nav-link" href="events">
+                <span class="oi bi bi-calendar-week"></span> Events
             </NavLink>
         </div>
     </nav>
