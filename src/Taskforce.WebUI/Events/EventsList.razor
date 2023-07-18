@@ -1,0 +1,66 @@
+@page "/events"
+@using Taskforce.Db.Events
+
+@inject IEntityQuery<Taskforce.Domain.Events.Event> query
+
+<PageTitle>Events</PageTitle>
+
+@if(events == null)
+{
+    <p><em>Loading...</em></p>
+}else{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+
+                <th>IsTemplate</th>
+
+                <th>Title</th>
+                <th>Type</th>
+                <th>Description</th>
+
+                <th>StartDate</th>
+                <th>EndDate</th>
+                
+                <th>IsDeleted</th>
+                <th>CreatedDate</th>
+                <th>UpdatedDate</th>
+                <th>DeletedDate</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var t in events)
+            {
+                var href = $"events/{t.Id}";
+                <tr>
+                    <NavLink class="nav-link" href="@href">
+                        <td>@t.Id</td>
+                    </NavLink>
+
+                    <td>@t.IsTemplate</td>
+                    <td>@t.Title</td>
+                    <td>@t.Type</td>
+                    <td>@t.Description</td>
+                    <td>@t.StartDate</td>
+                    <td>@t.EndDate</td>
+                    
+                    <td>@t.IsDeleted</td>
+                    <td>@t.CreatedDate</td>
+                    <td>@t.UpdatedDate</td>
+                    <td>@t.DeletedDate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private Taskforce.Domain.Events.Event[] events;
+
+    protected override async Task OnInitializedAsync()
+    {
+        events = (await query.GetListAsync(new EventSpecification(), default)).ToArray();
+    }
+}

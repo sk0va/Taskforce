@@ -1,0 +1,69 @@
+@inject NavigationManager nm;
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+    @if(parts.Count == 0){
+        <li class="breadcrumb-item" aria-current="page"> 
+            <NavLink href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Home
+            </NavLink>
+        </li>
+    }
+    else {
+        foreach (var p in parts)
+        {
+            if(p.Href != null)
+            {
+                <li class="breadcrumb-item" aria-current="page">
+                    <NavLink href="@p.Href">@p.Title</NavLink>
+                </li>
+            }
+            else
+            {
+                <li class="breadcrumb-item active" aria-current="page"> 
+                    @parts[parts.Count-1].Title 
+                </li>
+            }
+        }
+    }
+    </ol> 
+</nav>
+
+@code {
+    private List<(string Title, string Href)> parts = new List<(string Title, string href)>();
+
+    [Parameter]
+    public string CurrentUri { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        if (CurrentUri == nm.BaseUri)
+            return;
+
+        var url = new Uri(CurrentUri);
+        var path = url.GetComponents(UriComponents.Path, UriFormat.SafeUnescaped);
+
+        if (string.IsNullOrWhiteSpace(path))
+            return;
+
+        parts = new List<(string Title, string href)>();
+
+        int lastSlash = 0, pos = 0;
+        do
+        {
+            pos = path.IndexOf('/', lastSlash);
+            pos = pos == -1 ? path.Length : pos;
+
+            string part = path[lastSlash..pos];
+
+            if (!string.IsNullOrWhiteSpace(part) && part != "/") 
+            {
+                string href = pos == path.Length ? null : path[..pos];
+                parts.Add((part, href));
+            }
+
+            lastSlash = pos + 1;
+        }
+        while(pos < path.Length);
+    }
+}

@@ -1,0 +1,67 @@
+@page "/events/{EventId:guid}"
+@using Taskforce.Domain
+@using Taskforce.Domain.Events
+@using Taskforce.Db.Events
+
+@inject IEntityQuery<Event> query
+
+@if (_event == null)
+{
+    <p><em>...Loading</em></p>
+} else {
+    
+    <form>
+        @foreach(var r in _props)
+        {   
+            <div class="row mb-3">
+                <label for="@(r.Name)" class="col-sm-2 col-form-label">@(r.Name)</label>
+                <div class="col-sm-10">
+                <input 
+                    type="text"
+                    class="form-control" 
+                    id="@(r.Name)" 
+                    name="@(r.Name)" 
+                    value="@(r.Value)" 
+                    readonly>
+                </div>
+            </div>
+        }
+    </form>
+}
+
+@code {
+    [Parameter]
+    public Guid EventId { get; set; }    
+
+    private Event _event = null;
+
+    private List<(string Name, string Value)> _props = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var spec = new EventSpecification();
+        spec.ById(EventId);
+
+        _event = (await query.GetListAsync(spec, default)).FirstOrDefault();
+        
+        string s(object o) { return o == null ? "" : o.ToString(); };
+        
+        _props = new List<(string, string)>()
+        {
+            (nameof(_event.Id), s(_event.Id)),
+
+            (nameof(_event.IsTemplate), s(_event.IsTemplate)),
+
+            (nameof(_event.Title), _event.Title),
+            (nameof(_event.Type), _event.Type),
+            (nameof(_event.Description), _event.Description),
+
+            (nameof(_event.StartDate), s(_event.StartDate)),
+            (nameof(_event.EndDate), s(_event.EndDate)),
+            (nameof(_event.IsDeleted), _event.IsDeleted.ToString()),
+            (nameof(_event.CreatedDate), _event.CreatedDate.ToString()),
+            (nameof(_event.UpdatedDate), s(_event.UpdatedDate)),
+            (nameof(_event.DeletedDate), s(_event.DeletedDate))
+        };
+    }
+}
