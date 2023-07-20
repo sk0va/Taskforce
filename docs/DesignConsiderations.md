@@ -1,0 +1,15 @@
+# Design considerations
+
+## Clean Architecture implementation details
+
+In the original Clean Architecture structure, provided by Uncle Bob, Application and Entities are two different layers. In this project, these two layers are combined into Taskforce.Domain project for simplicity. The original idea to separate Application layer from Entities is to make it possible to use Entities in other applications (i.e. within the same company). In this project, this is not the case, so there is no need to separate them. Perhaps, if you are going to create microservices using Clean Architecture, you may want to separate these two layers. But more likely, in this case, you may want to share contracts between microservices, rather than sharing domain entities layer and logic... Anyway, in your projects, it is up to you, to move domain entities to separate project or not.
+
+Personally, I don't like the term "Interface Adapters" from the original description of the Clean Architecture, because it sounds quite confusing. I prefer to call this layer "Infrastructure" or "Infrastructure Layer" because it sounds more intuitive and familiar.
+
+One other aspect of this solution is how are interfaces shared from the domain application layer to infrastructure layers. As you may see, it hasn't a separate project with interfaces that are referenced by other projects. Instead of this, infrastructure layers like Taskforce.Db and Taskforce.Api are referencing Taskforce.Domain project. Taskforce.Domain project contains interfaces, which are implemented by infrastructure layers. At the same time, types that implement business logic, like command handlers, are encapsulated within Taskforce.Domain project and not visible to infrastructure layer, except composition root project Taskforce.App, to make dependency registration logic. Internal types and InternalsVisibleToAttribute are used to make this trick. That reduces the number of projects and simplifies the solution structure a bit.
+
+## Web API and UI 
+
+This solution has dual interface and provides both GraphQL+REST web API and UI implemented on Blazor. This is done mostly to demonstrate various scenarious. Unfortunatelly, front end part is not implemented because of lack of capacity and expertise in front-end techs. If you want to contribute to this project, you are welcome!
+
+Taskforce.App and Taskforce.Api are separate projects because they have different purposes. Taskforce.App is the composition root project of the application and it is responsible for DI and application hosting. Taskforce.Api is responsible for web request handling (GraphQL and REST API controllers). In this way, you may add more application interface projects if you need them, i.e. Taskforce.Messaging for handling messages from message buses like Kafka or RabbitMq, Taskforce.SignalR for handling SignalR connections, etc. For the same reasons most of Blazor pages and related code are placed in WebUI project. App project is containing only root infrastructure required by Blazor.
