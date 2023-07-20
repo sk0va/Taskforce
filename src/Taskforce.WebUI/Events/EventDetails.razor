@@ -2,13 +2,16 @@
 @using Taskforce.Domain
 @using Taskforce.Domain.Events
 @using Taskforce.Db.Events
+@using Taskforce.WebUI.Components
 
 @inject IEntityQuery<Event> query
 
-@if (_event == null)
+@if (_event != null)
 {
-    <p><em>...Loading</em></p>
-} else {
+    <div calss="container mb-3">
+        <NavButton Subclass="primary" TargetUri="@($"/events/{EventId}/edit")"> Edit </NavButton>
+        <NavButton Subclass="outline-dark" TargetUri="events"> Back to Tasks </NavButton>
+    </div>
     
     <form>
         @foreach(var r in _props)
@@ -27,13 +30,24 @@
             </div>
         }
     </form>
+} 
+else if(_error != null)
+{
+    <div class="alert alert-danger">
+        @_error
+    </div>
+} 
+else 
+{
+    <p><em>...Loading</em></p>
 }
 
 @code {
     [Parameter]
-    public Guid EventId { get; set; }    
+    public Guid EventId { get; set; }
 
     private Event _event = null;
+    private string _error = null;
 
     private List<(string Name, string Value)> _props = null;
 
@@ -43,6 +57,12 @@
         spec.ById(EventId);
 
         _event = (await query.GetListAsync(spec, default)).FirstOrDefault();
+
+        if (_event == null)
+        {
+            _error = $"Event with ID={EventId} is not found";
+            return;
+        }
         
         string s(object o) { return o == null ? "" : o.ToString(); };
         

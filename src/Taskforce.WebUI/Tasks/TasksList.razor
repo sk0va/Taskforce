@@ -1,5 +1,6 @@
 @page "/tasks"
 @using Taskforce.Db.Tasks
+@using Taskforce.WebUI.Components
 
 @inject IEntityQuery<Taskforce.Domain.Tasks.Task> query
 
@@ -9,6 +10,11 @@
 {
     <p><em>Loading...</em></p>
 }else{
+    <div calss="container mb-3">
+        <NavButton Subclass="primary" TargetUri="@($"/tasks/add")"> New </NavButton>
+        <NavButton Subclass="outline-dark" TargetUri="tasks"> Back to Tasks </NavButton>
+    </div>
+
     <table class="table">
         <thead>
             <tr>
@@ -58,9 +64,3 @@
         tasks = (await query.GetListAsync(new TaskSpecification(), default)).ToArray();
     }
 }
-
-@* 
-#pragma warning restore 1998
-#nullable restore
-#line 8 "/home/serg/projects/Taskforce/src/Taskforce.WebUI/Pages/TasksList.razor" *@
-

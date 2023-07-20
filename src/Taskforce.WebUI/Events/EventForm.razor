@@ -1,0 +1,38 @@
+@using Taskforce.WebUI.Components
+
+@if (Event == null)
+{
+    <p><em>Loading...</em></p>
+}
+else 
+{
+    <EditForm class="form" Model="@Event" OnValidSubmit="OnSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <FormRow Id="@nameof(Event.Description)" Label="Description">
+            <InputText @bind-Value="Event.Description"/>
+        </FormRow>
+        <FormRow Id="@nameof(Event.Title)" Label="Title">
+            <InputText @bind-Value="Event.Title"/>
+        </FormRow>
+        <FormRow Id="@nameof(Event.Type)" Label="Type">
+            <InputText @bind-Value="Event.Type"/>
+        </FormRow>
+
+        <FormRow Id="@nameof(Event.StartDate)" Label="Start Date">
+            <InputDate @bind-Value="Event.StartDate"/>
+        </FormRow>
+        <FormRow Id="@nameof(Event.EndDate)" Label="End Date">
+            <InputDate @bind-Value="Event.EndDate"/>
+        </FormRow>
+        
+        <button class="btn btn-primary" type="submit">Submit</button>
+        <NavButton Subclass="outline-dark" TargetUri="@($"/events/{Event.Id}")"> Discard </NavButton>
+    </EditForm>
+}
+
+@code {
+    [Parameter] public Domain.Events.Event Event { get; set; }
+
+    [Parameter] public EventCallback<EditContext> OnSubmit { get; set; }
+}

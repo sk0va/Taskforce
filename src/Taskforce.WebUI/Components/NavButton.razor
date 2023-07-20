@@ -1,0 +1,19 @@
+@inject NavigationManager nm
+
+<a class="btn btn-@Subclass" role="button" @onclick="NavigateToEditPage">
+    @ChildContent
+</a>
+
+@code 
+{
+    [Parameter] public RenderFragment ChildContent { get; set; }
+
+    [Parameter] public string Subclass { get; set; }
+
+    [Parameter] public string TargetUri { get; set; }
+
+    public void NavigateToEditPage()
+    {
+        nm.NavigateTo(TargetUri);
+    }
+}

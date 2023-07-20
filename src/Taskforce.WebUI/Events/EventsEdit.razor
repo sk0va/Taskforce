@@ -1,0 +1,46 @@
+@page "/events/{EventId:guid}/edit"
+
+@using Taskforce.Domain.Events
+@using Taskforce.Db.Events
+
+@using Taskforce.WebUI.Components
+@using Taskforce.WebUI.Events
+
+@inject IEntityQuery<Domain.Events.Event> query
+@inject ICommandLauncher commandLauncher
+
+<EventForm Task="_task" OnSubmit="HandleValidSubmit"></EventForm>
+
+@code {
+    [Parameter]
+    public Guid EventId { get; set; }
+
+    public Domain.Events.Event _event = null;
+
+    protected override async System.Threading.Tasks.Task OnInitializedAsync()
+    {
+        var spec = new EventSpecification();
+        spec.ById(EventId);
+
+        _event = (await query.GetListAsync(spec, default))?.FirstOrDefault();
+    }    
+
+    private async System.Threading.Tasks.Task HandleValidSubmit()
+    {
+        var command = new UpdateEventCommand
+        {
+            CommandId = Guid.NewGuid(),
+            EventId = _event.Id,
+
+            Title = _event.Title,
+            Description = _event.Description,
+
+            Type = _event.Type,
+            
+            StartDate = _event.StartDate,
+            EndDate = _event.EndDate
+        };
+
+        await commandLauncher.Run(command, default);
+    }
+}

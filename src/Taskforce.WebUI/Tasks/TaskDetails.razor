@@ -1,13 +1,16 @@
 @page "/tasks/{TaskId:guid}"
 @using Taskforce.Domain
 @using Taskforce.Db.Tasks
+@using Taskforce.WebUI.Components
 
 @inject IEntityQuery<Domain.Tasks.Task> query
 
-@if (_task == null)
+@if (_task != null)
 {
-    <p><em>...Loading</em></p>
-} else {
+    <div calss="container mb-3">
+        <NavButton Subclass="primary" TargetUri="@($"/tasks/{TaskId}/edit")"> Edit </NavButton>
+        <NavButton Subclass="outline-dark" TargetUri="tasks"> Back to Tasks </NavButton>
+    </div>
     
     <form>
         @foreach(var r in _props)
@@ -27,14 +30,25 @@
         }
     </form>
 }
+else if(_error != null)
+{
+    <div class="alert alert-danger">
+        @_error
+    </div>
+} 
+else 
+{
+    <p><em>...Loading</em></p>
+}
 
 @code {
     [Parameter]
-    public Guid TaskId { get; set; }    
+    public Guid TaskId { get; set; }
 
     private Domain.Tasks.Task _task = null;
+    public string _error = null;
 
-    private List<(string Name, string Value)> _props = null; //new Dictionary<string, string>();
+    private List<(string Name, string Value)> _props = null; 
 
     protected override async System.Threading.Tasks.Task OnInitializedAsync()
     {
@@ -42,6 +56,12 @@
         spec.ById(TaskId);
 
         _task = (await query.GetListAsync(spec, default)).FirstOrDefault();
+
+        if (_task == null)
+        {
+            _error = $"Task with ID={TaskId} is not found";
+            return;
+        }
 
         string s(object o) { return o == null ? "" : o.ToString(); };
         

@@ -1,0 +1,34 @@
+@using Taskforce.WebUI.Components
+
+@if (Task == null)
+{
+    <p><em>Loading...</em></p>
+} 
+else
+{
+    <EditForm class="form" Model="@Task" OnValidSubmit="OnSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <FormRow Id="@nameof(Task.Description)" Label="Description">
+            <InputText @bind-Value="Task.Description"/>
+        </FormRow>
+        <FormRow Id="@nameof(Task.Title)" Label="Title">
+            <InputText @bind-Value="Task.Title"/>
+        </FormRow>
+
+
+        <FormRow Id="@nameof(Task.DueDate)" Label="Due Date">
+            <InputDate @bind-Value="Task.DueDate"/>
+        </FormRow>
+        
+        <button class="btn btn-primary" type="submit">Save</button>
+        <NavButton Subclass="outline-dark" TargetUri="@($"/tasks")"> Discard </NavButton>
+    </EditForm>
+}
+
+@code {
+    [Parameter] public Domain.Tasks.Task Task {get; set; }
+
+    [Parameter] public EventCallback<EditContext> OnSubmit { get; set; }
+}

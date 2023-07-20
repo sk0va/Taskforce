@@ -1,0 +1,40 @@
+@page "/tasks/{TaskId:guid}/edit"
+
+@using Taskforce.Db.Tasks
+@using Taskforce.Domain.Tasks
+
+@using Taskforce.WebUI.Tasks
+
+@inject IEntityQuery<Domain.Tasks.Task> query
+@inject ICommandLauncher commandLauncher
+
+<TaskForm Task="_task" OnSubmit="HandleValidSubmit"></TaskForm>
+
+@code {
+    [Parameter]
+    public Guid TaskId { get; set; }
+
+    private Domain.Tasks.Task _task;
+
+    protected override async System.Threading.Tasks.Task OnInitializedAsync()
+    {
+        var spec = new TaskSpecification();
+        spec.ById(TaskId);
+
+        _task = (await query.GetListAsync(spec, default))?.FirstOrDefault();
+    }
+
+    private async System.Threading.Tasks.Task HandleValidSubmit()
+    {
+        var command = new UpdateTaskCommand
+        {
+            CommandId = Guid.NewGuid(),
+            TaskId = _task.Id,
+            
+            Title = _task.Title,
+            Description = _task.Description,
+            DueDate = _task.DueDate,
+        };
+        await commandLauncher.Run(command, default);
+    }
+}

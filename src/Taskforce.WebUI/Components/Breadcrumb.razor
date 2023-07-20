@@ -1,31 +1,29 @@
 @inject NavigationManager nm;
 
 <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-    @if(parts.Count == 0){
+    <ol class="breadcrumb breadcrumb-chevron p-2 rounded-3">
         <li class="breadcrumb-item" aria-current="page"> 
-            <NavLink href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
+            <NavLink href="/">
+                <span class="oi oi-home" aria-hidden="true"></span> 
             </NavLink>
         </li>
-    }
-    else {
-        foreach (var p in parts)
-        {
-            if(p.Href != null)
+        @if(parts.Count != 0){
+            foreach (var p in parts)
             {
-                <li class="breadcrumb-item" aria-current="page">
-                    <NavLink href="@p.Href">@p.Title</NavLink>
-                </li>
-            }
-            else
-            {
-                <li class="breadcrumb-item active" aria-current="page"> 
-                    @parts[parts.Count-1].Title 
-                </li>
+                if(p.Href != null)
+                {
+                    <li class="breadcrumb-item" aria-current="page">
+                        <NavLink class="link-body-emphasis fw-semibold text-decoration-none" href="@p.Href">@p.Title</NavLink>
+                    </li>
+                }
+                else
+                {
+                    <li class="breadcrumb-item active" aria-current="page"> 
+                        @parts[parts.Count-1].Title 
+                    </li>
+                }
             }
         }
-    }
     </ol> 
 </nav>
 
