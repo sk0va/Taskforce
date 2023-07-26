@@ -20,6 +20,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+
+    <PackageReference Include="Skova.Repository.DependencyInjection" Version="0.9.0-*" />
   </ItemGroup>
 
   <ItemGroup>
