@@ -1,3 +1,5 @@
+using Skova.Repository.Abstractions.Specifications;
+
 namespace Taskforce.Domain.Interfaces.Specifications;
 
 public interface IEntitySpecification : ISpecification<Entities.Entity>

@@ -1,4 +1,5 @@
-using Taskforce.Domain.Interfaces;
+using Skova.Repository.Abstractions;
+
 using Taskforce.Domain.Interfaces.Cqrs;
 
 namespace Taskforce.Domain.Tasks;

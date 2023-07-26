@@ -1,4 +1,4 @@
-using Taskforce.Domain.Interfaces.Specifications;
+using Skova.Repository.Abstractions.Specifications;
 
 namespace Taskforce.Api.Queries;
 

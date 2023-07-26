@@ -1,4 +1,6 @@
-using Taskforce.Domain.Interfaces;
+using Skova.Repository.Abstractions;
+using Skova.Repository.Abstractions.Specifications;
+
 using Taskforce.Domain.Interfaces.Cqrs;
 using Taskforce.Domain.Interfaces.Specifications;
 
