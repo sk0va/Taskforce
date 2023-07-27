@@ -5,12 +5,13 @@
 
 @using Taskforce.WebUI.Tasks
 
+@inject NavigationManager nm;
 @inject IEntityQuery<Domain.Tasks.Task> query
 @inject ICommandLauncher commandLauncher
 
 <TaskForm Task="_task" OnSubmit="HandleValidSubmit"></TaskForm>
 
-@code {
+@code { 
     [Parameter]
     public Guid TaskId { get; set; }
 
@@ -36,5 +37,6 @@
             DueDate = _task.DueDate,
         };
         await commandLauncher.Run(command, default);
+        nm.NavigateTo("tasks");
     }
 }

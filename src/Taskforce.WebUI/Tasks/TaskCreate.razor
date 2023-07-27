@@ -3,6 +3,7 @@
 @using Taskforce.Domain.Tasks
 @using Taskforce.WebUI.Tasks
 
+@inject NavigationManager nm;
 @inject IEntityQuery<Domain.Tasks.Task> query
 @inject ICommandLauncher commandLauncher
 
@@ -29,5 +30,7 @@
             DueDate = _task.DueDate,
         };
         await commandLauncher.Run(command, default);
+        
+        nm.NavigateTo("tasks");
     }
 }

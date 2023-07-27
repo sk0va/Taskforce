@@ -68,12 +68,14 @@ else
         _props = new List<(string, string)>()
         {
             (nameof(_task.Id), s(_task.Id)),
-            (nameof(_task.DueDate), s(_task.DueDate)),
-            (nameof(_task.CompletedDate), s(_task.CompletedDate)),
             (nameof(_task.IsTemplate), _task.IsTemplate.ToString()),
+
             (nameof(_task.Title), _task.Title.ToString()),
             (nameof(_task.Description), _task.Description.ToString()),
             (nameof(_task.State), _task.State.ToString()),
+            (nameof(_task.DueDate), s(_task.DueDate)),
+            (nameof(_task.CompletedDate), s(_task.CompletedDate)),
+
             (nameof(_task.IsDeleted), _task.IsDeleted.ToString()),
             (nameof(_task.CreatedDate), _task.CreatedDate.ToString()),
             (nameof(_task.UpdatedDate), s(_task.UpdatedDate)),
