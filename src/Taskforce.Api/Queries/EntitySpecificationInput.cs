@@ -1,6 +1,8 @@
-using Taskforce.Db.Entities;
+using Skova.Repository.Abstractions.Specifications;
+
 using Taskforce.Domain.Entities;
 using Taskforce.Domain.Interfaces.Specifications;
+using Taskforce.Db.Entities;
 
 namespace Taskforce.Api.Queries;
 

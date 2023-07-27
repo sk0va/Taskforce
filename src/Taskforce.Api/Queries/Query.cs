@@ -1,4 +1,5 @@
 using Humanizer;
+
 using Taskforce.Domain.Interfaces.Cqrs;
 
 namespace Taskforce.Api.Queries;

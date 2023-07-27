@@ -23,7 +23,6 @@ internal static class Program
             app.UseSwagger();
             app.UseSwaggerUI();
 
-            // app.UseExceptionHandler("/Error");
             // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             app.UseHsts();
         }
@@ -34,8 +33,6 @@ internal static class Program
 
         app.MapGraphQL();
         app.MapControllers();
-
-        // blazor section
 
         app.UseStaticFiles();
         app.UseRouting();
@@ -77,12 +74,10 @@ internal static class Program
                 schemaBuilder.AddQueryType<QueryType>();
             });
 
-
-        // Add services to the container.
         services.AddRazorPages();
         services.AddServerSideBlazor();
 
-        DependenciesRegistrator.RegisterServices(services);
+        DependenciesRegistrar.RegisterServices(services);
     }
 
     private static void PrepareApp(WebApplication app)

@@ -1,9 +1,10 @@
-using Taskforce.Domain.Interfaces;
+using Skova.Repository.Abstractions;
+
 using Taskforce.Domain.Interfaces.Cqrs;
 
 namespace Taskforce.Domain.Events;
 
-public class CreateEventCommandHandler : ICommandHandler<CreateEventCommand>
+internal class CreateEventCommandHandler : ICommandHandler<CreateEventCommand>
 {
     private readonly IRepository<Event> _eventRepository;
     private readonly IUnitOfWork _unitOfWork;

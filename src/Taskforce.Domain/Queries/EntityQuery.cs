@@ -1,7 +1,8 @@
+using Skova.Repository.Abstractions;
+using Skova.Repository.Abstractions.Specifications;
+
 using Taskforce.Domain.Entities;
-using Taskforce.Domain.Interfaces;
 using Taskforce.Domain.Interfaces.Cqrs;
-using Taskforce.Domain.Interfaces.Specifications;
 
 namespace Taskforce.Domain.Queries;
 

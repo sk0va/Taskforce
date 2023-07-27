@@ -1,3 +1,5 @@
+using Skova.Repository.Abstractions.Specifications;
+
 using Taskforce.Db.Tasks;
 using Taskforce.Domain.Interfaces.Specifications;
 
