@@ -6,7 +6,7 @@ using Taskforce.Domain.Interfaces.Specifications;
 
 namespace Taskforce.Domain.Events;
 
-public class UpdateEventCommandHandler : ICommandHandler<UpdateEventCommand>
+internal class UpdateEventCommandHandler : ICommandHandler<UpdateEventCommand>
 {
     private readonly IRepository<Event> _eventRepository;
     private readonly IUnitOfWork _unitOfWork;

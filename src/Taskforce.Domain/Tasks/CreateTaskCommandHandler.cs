@@ -26,7 +26,7 @@ internal class CreateTaskCommandHandler : ICommandHandler<CreateTaskCommand>
             Description = command.Description,
             DueDate = command.DueDate,
             State = "New",
-            
+
             CreatedDate = DateTime.UtcNow
         };
 
