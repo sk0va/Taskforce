@@ -37,7 +37,8 @@ internal class UpdateTaskCommandHandler : ICommandHandler<UpdateTaskCommand>
                 task => task
                     .Set(t => t.Title, command.Title)
                     .Set(t => t.Description, command.Description)
-                    .Set(t => t.DueDate, command.DueDate),
+                    .Set(t => t.DueDate, command.DueDate)
+                    .Set(t => t.CompletedDate, command.CompletedDate),
                 ct);
 
         await _unitOfWork.SaveChangesAsync(ct);

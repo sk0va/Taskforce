@@ -13,4 +13,5 @@ public class UpdateTaskCommand : ICommand
     public string Description { get; set; }
 
     public DateTime? DueDate { get; set; }
+    public DateTime? CompletedDate { get; set; }
 }
