@@ -4,23 +4,17 @@ using Taskforce.Domain.Interfaces.Specifications;
 
 namespace Taskforce.Db.Entities;
 
-public class EntitySpecification : IEntitySpecification, IQueryTransformer<DbEntity>
+public class EntitySpecification<TDb> : QueryTransformationsContainer<TDb>, IEntitySpecification
+    where TDb : DbEntity
 {
-    protected readonly SpecificationContainer<Domain.Entities.Entity, DbEntity> _entitySpecifications = new();
-
-    public IQueryable<DbEntity> Apply(IQueryable<DbEntity> query)
-    {
-        return _entitySpecifications.Apply(query);
-    }
-
     public void ById(Guid taskId)
     {
-        _entitySpecifications.AddTranformation(query => query.Where(t => t.Id == taskId));
+        AddTranformation(query => query.Where(t => t.Id == taskId));
     }
 
     public void CreatedDateBetween(DateTime? from = null, DateTime? till = null)
     {
-        _entitySpecifications.AddTranformation(query =>
+        AddTranformation(query =>
         {
             if (from != null)
                 query = query.Where(t => t.CreatedDate > from);
@@ -34,12 +28,12 @@ public class EntitySpecification : IEntitySpecification, IQueryTransformer<DbEnt
 
     public void CreatedDateIs(DateTime? exactValue = null)
     {
-        _entitySpecifications.AddTranformation(query => query.Where(t => t.CreatedDate == exactValue));
+        AddTranformation(query => query.Where(t => t.CreatedDate == exactValue));
     }
 
     public void DeletedDateBetween(DateTime? from = null, DateTime? till = null)
     {
-        _entitySpecifications.AddTranformation(query =>
+        AddTranformation(query =>
         {
             if (from != null)
                 query = query.Where(t => t.DeletedDate > from);
@@ -53,12 +47,12 @@ public class EntitySpecification : IEntitySpecification, IQueryTransformer<DbEnt
 
     public void DeletedDateIs(DateTime? exactValue = null)
     {
-        _entitySpecifications.AddTranformation(query => query.Where(t => t.DeletedDate == exactValue));
+        AddTranformation(query => query.Where(t => t.DeletedDate == exactValue));
     }
 
     public void UpdatedDateBetween(DateTime? from = null, DateTime? till = null)
     {
-        _entitySpecifications.AddTranformation(query =>
+        AddTranformation(query =>
         {
             if (from != null)
                 query = query.Where(t => t.UpdatedDate > from);
@@ -72,6 +66,6 @@ public class EntitySpecification : IEntitySpecification, IQueryTransformer<DbEnt
 
     public void UpdatedDateIs(DateTime? exactValue = null)
     {
-        _entitySpecifications.AddTranformation(query => query.Where(t => t.UpdatedDate == exactValue));
+        AddTranformation(query => query.Where(t => t.UpdatedDate == exactValue));
     }
 }

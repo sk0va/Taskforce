@@ -1,3 +1,4 @@
+
 using Skova.Repository.Abstractions;
 using Skova.Repository.Abstractions.Specifications;
 
@@ -6,7 +7,7 @@ using Taskforce.Domain.Interfaces.Cqrs;
 
 namespace Taskforce.Domain.Queries;
 
-internal class EntityQuery<TEntity> : IEntityQuery<TEntity> where TEntity : Entity
+internal class EntityQuery<TEntity> : Interfaces.Cqrs.IEntityQuery<TEntity> where TEntity : Entity
 {
     private readonly IRepository<TEntity> _repository;
 
@@ -17,6 +18,6 @@ internal class EntityQuery<TEntity> : IEntityQuery<TEntity> where TEntity : Enti
 
     public async Task<IEnumerable<TEntity>> GetListAsync(ISpecification<TEntity> specification, CancellationToken ct)
     {
-        return await _repository.With(specification).ToListAsync(ct);
+        return await _repository.With(specification).ExecuteQueryAsync(ct);
     }
 }

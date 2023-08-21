@@ -10,8 +10,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Automapper" Version="12.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.9" />
-    <PackageReference Include="Skova.Repository.Abstractions" Version="0.9.0-*" />
+    <PackageReference Include="Skova.Repository.Abstractions" Version="0.10.0-*" />
   </ItemGroup>
 
   <ItemGroup>

@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Skova.Repository.Impl" Version="0.9.0-*" />
+    <PackageReference Include="Skova.Repository.Impl" Version="0.10.0-*" />
   </ItemGroup>
 
 </Project>

@@ -10,7 +10,7 @@ public class EntitySpecificationInput : ISpecificationInput<Entity>
 {
     public ISpecification<Entity> ToSpecification()
     {
-        var specification = new EntitySpecification();
+        var specification = new EntitySpecification<DbEntity>();
 
         FillSpecification(specification);
 
