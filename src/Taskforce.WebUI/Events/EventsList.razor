@@ -1,5 +1,6 @@
 @page "/events"
 @using Taskforce.Db.Events
+@using Taskforce.WebUI.Components
 
 @inject IEntityQuery<Taskforce.Domain.Events.Event> query
 
@@ -9,6 +10,10 @@
 {
     <p><em>Loading...</em></p>
 }else{
+    <div calss="container mb-3">
+        <NavButton Subclass="primary" TargetUri="@($"/events/add")"> New </NavButton> 
+    </div>
+
     <table class="table">
         <thead>
             <tr>

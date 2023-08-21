@@ -20,10 +20,10 @@ else
         </FormRow>
 
         <FormRow Id="@nameof(Event.StartDate)" Label="Start Date">
-            <InputDate @bind-Value="Event.StartDate"/>
+            <InputDate @bind-Value="Event.StartDate" Type="InputDateType.DateTimeLocal" />
         </FormRow>
         <FormRow Id="@nameof(Event.EndDate)" Label="End Date">
-            <InputDate @bind-Value="Event.EndDate"/>
+            <InputDate @bind-Value="Event.EndDate" Type="InputDateType.DateTimeLocal"/>
         </FormRow>
         
         <button class="btn btn-primary" type="submit">Submit</button>

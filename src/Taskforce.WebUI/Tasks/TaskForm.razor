@@ -23,7 +23,7 @@ else
         </FormRow>
 
         <FormRow Id="@nameof(Task.DueDate)" Label="Due Date">
-            <InputDate @bind-Value="Task.DueDate"/>
+            <InputDate @bind-Value="Task.DueDate" Type="InputDateType.DateTimeLocal" />
         </FormRow>
 
         <FormRow Id="@nameof(Task.CompletedDate)" Label="Completed Date">
@@ -36,7 +36,7 @@ else
 }
 
 @code {
-    [Parameter] public Domain.Tasks.Task Task {get; set; }
+    [Parameter] public TaskModel Task {get; set; }
 
     [Parameter] public EventCallback<EditContext> OnSubmit { get; set; }
 }
