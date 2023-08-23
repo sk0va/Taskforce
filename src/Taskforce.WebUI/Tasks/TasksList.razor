@@ -11,20 +11,17 @@
     <p><em>Loading...</em></p>
 }else{
     <div calss="container mb-3">
-        <NavButton Subclass="primary" TargetUri="@($"/tasks/add")"> New </NavButton>
-        <NavButton Subclass="outline-dark" TargetUri="tasks"> Back to Tasks </NavButton>
+        <NavButton Subclass="primary" TargetUri="@($"/tasks/add")"> New </NavButton> 
     </div>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>DueDate</th>
-                <th>CompletedDate</th>
-                <th>IsTemplate</th>
-                <th>Title</th>
+                <th>Task</th>
                 <th>Description</th>
                 <th>State</th>
+                <th>DueDate</th>
+                <th>CompletedDate</th>
                 <th>IsDeleted</th>
                 <th>CreatedDate</th>
                 <th>UpdatedDate</th>
@@ -37,15 +34,22 @@
             {
                 var href = $"tasks/{t.Id}";
                 <tr>
-                    <NavLink class="nav-link" href="@href">
-                        <td>@t.Id</td>
-                    </NavLink>
-                    <td>@t.DueDate</td>
-                    <td>@t.CompletedDate</td>
-                    <td>@t.IsTemplate</td>
-                    <td>@t.Title</td>
+                    <th>
+                        <Tooltip Text="@t.Id.ToString()"> 
+                            <NavLink class="nav-link" href="@href" caption>
+                                @if(@t.IsTemplate)
+                                {
+                                    <i class="bi bi-boxes pe-1"></i>
+                                }
+                                @t.Title
+                            </NavLink>
+                        </Tooltip>
+                    </th>
+
                     <td>@t.Description</td>
                     <td>@t.State</td>
+                    <td>@t.DueDate</td>
+                    <td>@t.CompletedDate</td>
                     <td>@t.IsDeleted</td>
                     <td>@t.CreatedDate</td>
                     <td>@t.UpdatedDate</td>
@@ -53,11 +57,11 @@
                 </tr>
             }
         </tbody>
-    </table>
+    </table> 
 }
 
 @code {
-    private Taskforce.Domain.Tasks.Task[] tasks;
+    private Taskforce.Domain.Tasks.Task[] tasks; 
 
     protected override async System.Threading.Tasks.Task OnInitializedAsync()
     {

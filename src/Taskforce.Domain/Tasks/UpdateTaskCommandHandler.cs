@@ -24,18 +24,21 @@ internal class UpdateTaskCommandHandler : ICommandHandler<UpdateTaskCommand>
 
     public async System.Threading.Tasks.Task HandleAsync(UpdateTaskCommand command, CancellationToken ct)
     {
-        var task = await _taskRepository.GetByIdAsync(command.TaskId, ct)
+        var spec = _specificationsFactory();
+        spec.ById(command.TaskId);
+        var task = (await _taskRepository.With(spec).ExecuteQueryAsync(ct)).FirstOrDefault()
             ?? throw new KeyNotFoundException($"Task with id {command.TaskId} not found");
 
-        var spec = _specificationsFactory();
+        spec = _specificationsFactory();
         spec.ById(command.TaskId);
 
         await _taskRepository.With(spec)
-            .UpdateAsync(
+            .ExecuteUpdateAsync(
                 task => task
                     .Set(t => t.Title, command.Title)
                     .Set(t => t.Description, command.Description)
-                    .Set(t => t.DueDate, command.DueDate),
+                    .Set(t => t.DueDate, command.DueDate)
+                    .Set(t => t.CompletedDate, command.CompletedDate),
                 ct);
 
         await _unitOfWork.SaveChangesAsync(ct);

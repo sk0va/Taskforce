@@ -10,16 +10,24 @@ else
         <DataAnnotationsValidator />
         <ValidationSummary />
 
-        <FormRow Id="@nameof(Task.Description)" Label="Description">
-            <InputText @bind-Value="Task.Description"/>
-        </FormRow>
         <FormRow Id="@nameof(Task.Title)" Label="Title">
             <InputText @bind-Value="Task.Title"/>
         </FormRow>
 
+        <FormRow Id="@nameof(Task.Description)" Label="Description">
+            <InputText @bind-Value="Task.Description"/>
+        </FormRow>
+
+        <FormRow Id="@nameof(Task.State)" Label="State">
+            <InputText @bind-Value="Task.State"/>
+        </FormRow>
 
         <FormRow Id="@nameof(Task.DueDate)" Label="Due Date">
-            <InputDate @bind-Value="Task.DueDate"/>
+            <InputDate @bind-Value="Task.DueDate" Type="InputDateType.DateTimeLocal" />
+        </FormRow>
+
+        <FormRow Id="@nameof(Task.CompletedDate)" Label="Completed Date">
+            <InputDate @bind-Value="Task.CompletedDate"/>
         </FormRow>
         
         <button class="btn btn-primary" type="submit">Save</button>
@@ -28,7 +36,7 @@ else
 }
 
 @code {
-    [Parameter] public Domain.Tasks.Task Task {get; set; }
+    [Parameter] public TaskModel Task {get; set; }
 
     [Parameter] public EventCallback<EditContext> OnSubmit { get; set; }
 }

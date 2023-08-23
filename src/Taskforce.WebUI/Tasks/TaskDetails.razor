@@ -1,45 +1,19 @@
 @page "/tasks/{TaskId:guid}"
 @using Taskforce.Domain
+@using Taskforce.Domain.Entities
 @using Taskforce.Db.Tasks
 @using Taskforce.WebUI.Components
 
 @inject IEntityQuery<Domain.Tasks.Task> query
+@inject ICommandLauncher commandLauncher
+@inject NavigationManager nm;
 
-@if (_task != null)
-{
-    <div calss="container mb-3">
-        <NavButton Subclass="primary" TargetUri="@($"/tasks/{TaskId}/edit")"> Edit </NavButton>
-        <NavButton Subclass="outline-dark" TargetUri="tasks"> Back to Tasks </NavButton>
-    </div>
-    
-    <form>
-        @foreach(var r in _props)
-        {   
-            <div class="row mb-3">
-                <label for="@(r.Name)" class="col-sm-2 col-form-label">@(r.Name)</label>
-                <div class="col-sm-10">
-                <input 
-                    type="text"
-                    class="form-control" 
-                    id="@(r.Name)" 
-                    name="@(r.Name)" 
-                    value="@(r.Value)" 
-                    readonly>
-                </div>
-            </div>
-        }
-    </form>
-}
-else if(_error != null)
-{
-    <div class="alert alert-danger">
-        @_error
-    </div>
-} 
-else 
-{
-    <p><em>...Loading</em></p>
-}
+<EntityDetails TargetId="@TaskId"
+    Properties="@_props" 
+    Error="@_error"
+    ResourcesListUri="/tasks"
+    BackToLabel="Back to Events"
+    DeleteHandler="OnDelete"/>
 
 @code {
     [Parameter]
@@ -68,16 +42,29 @@ else
         _props = new List<(string, string)>()
         {
             (nameof(_task.Id), s(_task.Id)),
-            (nameof(_task.DueDate), s(_task.DueDate)),
-            (nameof(_task.CompletedDate), s(_task.CompletedDate)),
             (nameof(_task.IsTemplate), _task.IsTemplate.ToString()),
+
             (nameof(_task.Title), _task.Title.ToString()),
             (nameof(_task.Description), _task.Description.ToString()),
             (nameof(_task.State), _task.State.ToString()),
+            (nameof(_task.DueDate), s(_task.DueDate)),
+            (nameof(_task.CompletedDate), s(_task.CompletedDate)),
+
             (nameof(_task.IsDeleted), _task.IsDeleted.ToString()),
             (nameof(_task.CreatedDate), _task.CreatedDate.ToString()),
             (nameof(_task.UpdatedDate), s(_task.UpdatedDate)),
             (nameof(_task.DeletedDate), s(_task.DeletedDate))
         };
+    }
+
+    public async System.Threading.Tasks.Task OnDelete()
+    {
+        var command = new DeleteEntityByIdCommand<Domain.Tasks.Task>()
+        {
+            Id = TaskId
+        };
+
+        await commandLauncher.Run(command, default);
+        nm.NavigateTo("tasks");
     }
 }

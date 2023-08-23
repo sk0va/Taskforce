@@ -1,0 +1,75 @@
+
+@if (Properties != null || TargetId == null)
+{
+    <div calss="container mb-3">
+        <NavButton Subclass="primary" TargetUri="@($"{ResourcesListUri}/{TargetId}/edit")"> Edit </NavButton>
+        <NavButton Subclass="outline-dark" TargetUri="@ResourcesListUri"> @BackToLabel </NavButton>
+        @* <button class="btn btn-danger" >Delete</button> *@
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Delete
+        </button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Delete confirmation</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Do you really want to delete the task?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Cancel</button>
+                <button type="button" class="btn" data-bs-dismiss="modal" @onclick="DeleteHandler">Delete</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    
+    <form>
+        @foreach(var r in Properties)
+        {   
+            <div class="row mb-3">
+                <label for="@(r.Name)" class="col-sm-2 col-form-label">@(r.Name)</label>
+                <div class="col-sm-10">
+                <input 
+                    type="text"
+                    class="form-control" 
+                    id="@(r.Name)" 
+                    name="@(r.Name)" 
+                    value="@(r.Value)" 
+                    readonly>
+                </div>
+            </div>
+        }
+    </form>
+} 
+else if(Error != null)
+{
+    <div class="alert alert-danger">
+        @Error
+    </div>
+
+    <div calss="container mb-3">
+        <NavButton Subclass="outline-dark" TargetUri="@ResourcesListUri"> @BackToLabel </NavButton>
+    </div>
+} 
+else 
+{
+    <p><em>...Loading</em></p>
+}
+
+@code {
+    [Parameter] public List<(string Name, string Value)> Properties { get; set; }
+    [Parameter] public string Error { get; set; }
+
+    [Parameter] public Guid? TargetId { get; set; }
+    [Parameter] public string ResourcesListUri { get; set; }
+
+    [Parameter] public string BackToLabel { get; set; }
+
+    [Parameter] public EventCallback DeleteHandler { get;set;}
+}

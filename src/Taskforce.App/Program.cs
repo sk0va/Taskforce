@@ -5,6 +5,7 @@ using AutoMapper.Extensions.ExpressionMapping;
 using Taskforce.Api.Queries;
 using Taskforce.App.Controllers;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
+using Taskforce.WebUI;
 
 namespace Taskforce.App;
 
@@ -59,7 +60,8 @@ internal static class Program
 
         services.AddAutoMapper(
             c => c.AddExpressionMapping(),
-            typeof(TaskforceDbContext).Assembly);
+            typeof(DbProfle).Assembly,
+            typeof(WebUIProfile).Assembly);
 
         services.AddDbContext<TaskforceDbContext>(b =>
             b.UseNpgsql(

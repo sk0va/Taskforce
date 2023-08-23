@@ -24,13 +24,11 @@ internal class UpdateEventCommandHandler : ICommandHandler<UpdateEventCommand>
 
     public async Task HandleAsync(UpdateEventCommand command, CancellationToken ct)
     {
-        var @event = await _eventRepository.GetByIdAsync(command.EventId, ct);
-
         var spec = _specificationsFactory();
         spec.ById(command.EventId);
 
         await _eventRepository.With(spec)
-            .UpdateAsync(
+            .ExecuteUpdateAsync(
                 @event => @event
                     .Set(e => e.IsTemplate, command.IsTemplate)
                     .Set(e => e.Title, command.Title)
@@ -40,7 +38,5 @@ internal class UpdateEventCommandHandler : ICommandHandler<UpdateEventCommand>
                     .Set(e => e.EndDate, command.EndDate)
                     .Set(e => e.UpdatedDate, DateTime.UtcNow),
                 ct);
-
-        await _unitOfWork.SaveChangesAsync(ct);
     }
 }

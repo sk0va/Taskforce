@@ -2,32 +2,30 @@
 
 @using Taskforce.Domain.Tasks
 @using Taskforce.WebUI.Tasks
+@using AutoMapper;
 
-@inject IEntityQuery<Domain.Tasks.Task> query
-@inject ICommandLauncher commandLauncher
+@inject NavigationManager nm;
+@inject IEntityQuery<Domain.Tasks.Task> query;
+@inject ICommandLauncher commandLauncher;
+@inject IMapper _mapper;
 
 <TaskForm Task="_task" OnSubmit="HandleValidSubmit"></TaskForm>
 
 @code {
-    private Domain.Tasks.Task _task;
+    private TaskModel _task;
 
     protected override void OnInitialized()
     {
-        _task = new Domain.Tasks.Task();
+        _task = new TaskModel();
         _task.Id = Guid.NewGuid();
     }
 
     private async System.Threading.Tasks.Task HandleValidSubmit()
     {
-        var command = new CreateTaskCommand
-        {
-            CommandId = Guid.NewGuid(),
-            TaskId = _task.Id,
-
-            Title = _task.Title,
-            Description = _task.Description,
-            DueDate = _task.DueDate,
-        };
-        await commandLauncher.Run(command, default);
+        var command = _mapper.Map<CreateTaskCommand>(_task);
+        command.CommandId = Guid.NewGuid();
+                
+        await commandLauncher.Run(command, default);        
+        nm.NavigateTo("tasks");
     }
 }

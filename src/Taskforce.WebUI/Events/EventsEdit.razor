@@ -8,8 +8,9 @@
 
 @inject IEntityQuery<Domain.Events.Event> query
 @inject ICommandLauncher commandLauncher
+@inject NavigationManager nm
 
-<EventForm Task="_task" OnSubmit="HandleValidSubmit"></EventForm>
+<EventForm Event="_event" OnSubmit="HandleValidSubmit"></EventForm>
 
 @code {
     [Parameter]
@@ -42,5 +43,6 @@
         };
 
         await commandLauncher.Run(command, default);
+        nm.NavigateTo("events");
     }
 }

@@ -8,8 +8,9 @@
 
 @inject IEntityQuery<Domain.Events.Event> query
 @inject ICommandLauncher commandLauncher
+@inject NavigationManager nm
 
-<EventForm Task="_task" OnSubmit="HandleValidSubmit"></EventForm>
+<EventForm Event="_event" OnSubmit="HandleValidSubmit"></EventForm>
 
 @code {
     [Parameter]
@@ -19,15 +20,15 @@
 
     protected override async System.Threading.Tasks.Task OnInitializedAsync()
     {
-        var spec = new EventSpecification();
-        spec.ById(EventId);
-
-        _event = (await query.GetListAsync(spec, default))?.FirstOrDefault();
+        _event = new Event
+        {
+            Id = Guid.NewGuid()
+        };
     }    
 
     private async System.Threading.Tasks.Task HandleValidSubmit()
     {
-        var command = new UpdateEventCommand
+        var command = new CreateEventCommand
         {
             CommandId = Guid.NewGuid(),
             EventId = _event.Id,
@@ -43,5 +44,6 @@
         };
 
         await commandLauncher.Run(command, default);
+        nm.NavigateTo("events");
     }
 }
