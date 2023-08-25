@@ -23,7 +23,7 @@
             "symbolOptions": {
                 "cachePath": "~/.dotnet/symbolcache",
                 "searchMicrosoftSymbolServer": false,
-                "searchNuGetOrgSymbolServer": false,
+                "searchNuGetOrgSymbolServer": true,
                 "moduleFilter": {
                     "mode": "loadAllButExcluded",
                     "excludedModules": []
