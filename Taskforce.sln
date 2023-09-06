@@ -3,21 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskforce.Domain", "Taskforce.Domain\Taskforce.Domain.csproj", "{EEADBAEE-7E2A-4ACE-BC24-D1DD15FFDB61}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskforce.Domain", "src\Taskforce.Domain\Taskforce.Domain.csproj", "{EEADBAEE-7E2A-4ACE-BC24-D1DD15FFDB61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskforce.Db", "Taskforce.Db\Taskforce.Db.csproj", "{25851BD5-9328-40EE-9664-D5E7D43DEE1D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskforce.Db", "src\Taskforce.Db\Taskforce.Db.csproj", "{25851BD5-9328-40EE-9664-D5E7D43DEE1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskforce.App", "Taskforce.App\Taskforce.App.csproj", "{06192038-2F77-46DD-9525-7350BBA00B1B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskforce.App", "src\Taskforce.App\Taskforce.App.csproj", "{06192038-2F77-46DD-9525-7350BBA00B1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskforce.Api", "Taskforce.Api\Taskforce.Api.csproj", "{D9558074-3A7B-4D4F-AF91-7C803DBE0FF4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskforce.Api", "src\Taskforce.Api\Taskforce.Api.csproj", "{D9558074-3A7B-4D4F-AF91-7C803DBE0FF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskforce.UnitTests", "Taskforce.UnitTests\Taskforce.UnitTests.csproj", "{BD470E8C-5E9A-4887-BE70-77EE13B3BE00}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskforce.UnitTests", "src\Taskforce.UnitTests\Taskforce.UnitTests.csproj", "{BD470E8C-5E9A-4887-BE70-77EE13B3BE00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskforce.IntegrationTests", "Taskforce.IntegrationTests\Taskforce.IntegrationTests.csproj", "{024418D7-9CB7-4B50-8557-62ADBFB6DEBB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskforce.IntegrationTests", "src\Taskforce.IntegrationTests\Taskforce.IntegrationTests.csproj", "{024418D7-9CB7-4B50-8557-62ADBFB6DEBB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskforce.Db.Migrations", "Taskforce.Db.Migrations\Taskforce.Db.Migrations.csproj", "{BA1222C3-7A00-4B94-A78B-186C44CFE6E3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskforce.Db.Migrations", "src\Taskforce.Db.Migrations\Taskforce.Db.Migrations.csproj", "{BA1222C3-7A00-4B94-A78B-186C44CFE6E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskforce.WebUI", "Taskforce.WebUI\Taskforce.WebUI.csproj", "{CF1401FF-6588-4179-9602-8189A7F25291}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskforce.WebUI", "src\Taskforce.WebUI\Taskforce.WebUI.csproj", "{CF1401FF-6588-4179-9602-8189A7F25291}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

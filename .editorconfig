@@ -10,3 +10,11 @@ end_of_line = lf
 charset = utf-8
 trim_trailing_whitespace = false
 insert_final_newline = false
+
+[*.cs]
+dotnet_diagnostic.RCS0044.severity = none
+dotnet_diagnostic.RCS0012.severity = none
+dotnet_diagnostic.RCS0036.severity = none
+dotnet_diagnostic.RCS1223.severity = none
+
+dotnet_diagnostic.RCS1007.severity = none
