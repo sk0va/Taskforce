@@ -21,7 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Taskforce.Domain\Taskforce.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Taskforce.Domain\Taskforce.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Taskforce.Db\Taskforce.Db.csproj" />
   </ItemGroup>
 
 </Project>

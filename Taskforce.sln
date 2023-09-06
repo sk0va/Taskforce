@@ -11,9 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskforce.App", "src\Taskfo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskforce.Api", "src\Taskforce.Api\Taskforce.Api.csproj", "{D9558074-3A7B-4D4F-AF91-7C803DBE0FF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskforce.UnitTests", "src\Taskforce.UnitTests\Taskforce.UnitTests.csproj", "{BD470E8C-5E9A-4887-BE70-77EE13B3BE00}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskforce.UnitTests", "tests\Taskforce.UnitTests\Taskforce.UnitTests.csproj", "{BD470E8C-5E9A-4887-BE70-77EE13B3BE00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskforce.IntegrationTests", "src\Taskforce.IntegrationTests\Taskforce.IntegrationTests.csproj", "{024418D7-9CB7-4B50-8557-62ADBFB6DEBB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskforce.IntegrationTests", "tests\Taskforce.IntegrationTests\Taskforce.IntegrationTests.csproj", "{024418D7-9CB7-4B50-8557-62ADBFB6DEBB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taskforce.Db.Migrations", "src\Taskforce.Db.Migrations\Taskforce.Db.Migrations.csproj", "{BA1222C3-7A00-4B94-A78B-186C44CFE6E3}"
 EndProject
